@@ -1,0 +1,21 @@
+{
+  "name": "bitcoin-trade-guard",
+  "version": "0.0.1",
+  "author": "David Knezic <davidknezic@gmail.com>",
+  "description": "Bitcoin trade analyzer. Browser based. Truth telling. Face it.",
+  "contributors": [],
+  "keywords": [
+    "bitcoin",
+    "trade",
+    "guard"
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-requirejs": "^0.4.3",
+    "send": "^0.2.0",
+    "parseurl": "^1.0.1",
+    "connect": "^2.14.4",
+    "less": "^1.7.0",
+    "jade": "^1.3.1"
+  }
+}

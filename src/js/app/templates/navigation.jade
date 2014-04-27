@@ -1,0 +1,25 @@
+.navbar.navbar-default(role="navigation")
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type="button", data-toggle="collapse", data-target="#btg-navbar-collapse")
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.home.navbar-brand(href="#")
+        span.fa.fa-btc
+        span &nbsp;
+        span Bitcoin Trade Guard
+      ul.nav.navbar-nav
+        li
+          a.notifications(href="#", data-toggle="popover")
+            span.fa.fa-bullhorn
+
+    #btg-navbar-collapse.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          a.dashboard(href="#") Dashboard
+        li
+          a.trades(href="#") Trades
+        li
+          a.analysis(href="#") Analysis

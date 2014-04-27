@@ -1,0 +1,99 @@
+.container-header
+  .row
+    .col-md-12
+      h1 New trade
+
+.container-content
+  .row
+    .col-md-12
+      .alert.alert-danger
+        strong Oh snap!
+        span &nbsp;
+        span There are errors in the form, which prevent me to save the trade!
+
+  .row
+    .col-sm-9
+      form.form-horizontal
+        .form-group
+          label.col-sm-2.control-label Execution date
+          .col-sm-4
+            input.execution-on.form-control(type="date")
+          label.col-sm-2.control-label Execution time
+          .col-sm-4
+            input.execution-time.form-control(type="time")
+        .form-group.has-error
+          label.col-sm-2.control-label Currency
+          .col-sm-4
+            .radio-buttons.btn-group.btn-group-justified(data-toggle="buttons")
+              label.btn.btn-default
+                input(type="radio", name="currency", value="USD")
+                span USD
+              label.btn.btn-default
+                input(type="radio", name="currency", value="EUR")
+                span EUR
+              label.btn.btn-default
+                input(type="radio", name="currency", value="CHF")
+                span CHF
+          label.col-sm-2.control-label Bitcoin price
+          .col-sm-4
+            .input-group
+              span.btc-price-currency.input-group-addon USD
+              input.btc-price.form-control(type="number")
+
+        .form-group
+        .form-group
+          label.col-sm-2.control-label Type
+          .col-sm-10
+            .radio-buttons.btn-group.btn-group-justified(data-toggle="buttons")
+              label.btn.btn-default
+                input.is-btc-buy(type="radio", name="type")
+                span Buy Bitcoin
+              label.btn.btn-default
+                input.is-btc-sell(type="radio", name="type")
+                span Sell Bitcoin
+        .form-group
+          label.col-sm-2.control-label Amount
+          .col-sm-4
+            .input-group
+              span.input-group-btn
+                button.btn.btn-default(type="button") BTC
+              input.amount.form-control(type="number")
+          label.col-sm-2.control-label Fee
+          .col-sm-4
+            .input-group
+              span.input-group-btn
+                button.btn.btn-default(type="button") BTC
+              input.fee.form-control(type="number")
+        .hl
+        .form-group
+        .form-group
+          label.col-sm-2.control-label Properties
+          .col-sm-10
+            .checkbox-buttons.btn-group.btn-group-justified(data-toggle="buttons")
+              label.btn.btn-default
+                input.ignore(type="checkbox")
+                span Ignore
+        .form-group
+          label.col-sm-2.control-label Service
+          .col-sm-10
+            input.service.form-control(type="text")
+        .form-group
+          label.col-sm-2.control-label Tags
+          .col-sm-10
+            input.tags.form-control(type="text")
+
+        .form-group
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.save.btn.btn-primary(type="submit") Save
+            span &nbsp;
+            button.cancel.btn.btn-default(type="button") Cancel
+    .col-sm-3.hidden-xs
+      .panel.panel-info
+        .panel-heading How about importing trades?
+        .panel-body
+          p You can import your trades automatically from this services:
+        div.list-group
+          a.list-group-item(href="#") Bitstamp
+          a.list-group-item(href="#") Coinbase
+          a.list-group-item(href="#") LocalBitcoins

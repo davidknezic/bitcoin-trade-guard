@@ -1,0 +1,41 @@
+{
+  "name": "bitcoin-trade-guard",
+  "version": "0.0.1",
+  "authors": [
+    "David Knezic <davidknezic@gmail.com>"
+  ],
+  "description": "Bitcoin trade analyzer. Browser based. Truth telling. Face it.",
+  "keywords": [
+    "bitcoin",
+    "trade",
+    "guard"
+  ],
+  "license": "none",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/davidknezic/bitcoin-trade-guard.git"
+  },
+  "dependencies": {
+    "backbone": "latest",
+    "backbone.localstorage": "latest",
+    "backbone.stickit": "latest",
+    "bootstrap": "latest",
+    "d3": "latest",
+    "font-awesome": "latest",
+    "jade": "latest",
+    "jquery": "latest",
+    "marionette": "latest",
+    "moment": "latest",
+    "requirejs": "latest",
+    "underscore": "latest",
+    "underscore.string": "latest"
+  },
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test"
+  ]
+}
