@@ -1,10 +1,10 @@
 define([
-    'backbone',
-    'moment'
-  ], function (Backbone, moment) {
-  return Backbone.Model.extend({
+    'app/models/base',
+    'app/validations/trade'
+  ], function (BaseModel, validation) {
+  return BaseModel.extend({
     defaults: {
-      'executionOn': moment(null),
+      'executionOn': null,
       'isBtcSell': false,
       'isBtcBuy': false,
       'currencyIsoCode': 'usd',
@@ -15,9 +15,11 @@ define([
       'xxxFee': 0.0,
       'isIgnored': false,
       'isDeleted': false,
-      'tradingServiceName': '',
-      'tradingServiceIdentifier': null,
+      'serviceName': '',
+      'serviceIdentifier': null,
       'tags': []
-    }
+    },
+
+    validation: validation
   });
 });

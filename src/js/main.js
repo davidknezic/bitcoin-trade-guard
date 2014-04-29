@@ -10,7 +10,7 @@ require.config({
     'backbone.babysitter': '../bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
     'backbone.wreqr': '../bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
     'backbone.localstorage': '../bower_components/backbone.localstorage/backbone.localStorage',
-    'backbone.stickit': '../bower_components/backbone.stickit/backbone.stickit',
+    'backbone.validation': '../bower_components/backbone-validation/dist/backbone-validation-amd',
     'marionette': '../bower_components/marionette/lib/core/amd/backbone.marionette',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
     'jade': '../bower_components/jade/runtime',

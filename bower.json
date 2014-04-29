@@ -18,7 +18,7 @@
   "dependencies": {
     "backbone": "latest",
     "backbone.localstorage": "latest",
-    "backbone.stickit": "latest",
+    "backbone-validation": "latest",
     "bootstrap": "latest",
     "d3": "latest",
     "font-awesome": "latest",
