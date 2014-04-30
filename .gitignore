@@ -7,3 +7,6 @@ node_modules/
 # Bower
 bower_components/
 src/bower_components
+
+# Project
+build/

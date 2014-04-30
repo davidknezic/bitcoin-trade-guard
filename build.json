@@ -1,0 +1,16 @@
+{
+  "baseUrl": "./src/js/",
+
+  "mainConfigFile": "./src/js/main.js",
+
+  "paths": {
+    "app/templates": "../../build/js/app/templates"
+  },
+
+  "optimize": "uglify",
+  "optimizeCss": "none",
+
+  "name": "main",
+
+  "out": "./build/js/main.js"
+}
