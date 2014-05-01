@@ -16,6 +16,7 @@
     "url": "git://github.com/davidknezic/bitcoin-trade-guard.git"
   },
   "dependencies": {
+    "almond": "~0.2.9",
     "backbone": "~1.1.2",
     "backbone.localstorage": "~1.1.7",
     "backbone-validation": "~0.9.1",

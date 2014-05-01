@@ -10,7 +10,12 @@
   "optimize": "uglify",
   "optimizeCss": "none",
 
-  "name": "main",
+  "name": "../bower_components/almond/almond",
+  "include": ["main"],
 
-  "out": "./build/js/main.js"
+  "wrap": false,
+
+  "out": "./build/js/main.js",
+
+  "preserveLicenseComments": false
 }
