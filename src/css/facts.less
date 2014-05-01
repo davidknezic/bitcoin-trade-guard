@@ -4,15 +4,21 @@
 }
 
 .fact > .fact-icon {
-  float: left;
   background-color: #36a9e1;
-  width: 100px;
-  height: 70px;
-  margin-bottom: -15px;
+  width: 100%;
+  height: 50px;
   text-align: center;
-  line-height: 70px;
+  line-height: 50px;
   font-size: 2.5em;
   color: white;
+
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    width: 100px;
+    margin-bottom: -15px;
+    height: 70px;
+    line-height: 70px;
+  }
 }
 
 .fact > .fact-body {
