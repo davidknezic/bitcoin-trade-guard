@@ -1,8 +1,11 @@
 define([
     'app/models/base',
-    'app/validations/trade'
-  ], function (BaseModel, validation) {
+    'app/validations/trade',
+    'moment',
+    'underscore'
+  ], function (BaseModel, validation, moment, _) {
   return BaseModel.extend({
+    validation: validation,
     defaults: {
       'executionOn': null,
       'isBtcSell': false,
@@ -20,6 +23,26 @@ define([
       'tags': []
     },
 
-    validation: validation
+    executionOn: function () {
+      var setValue, getValue;
+
+      if (arguments.length > 0) {
+        // setter
+        setValue = arguments[0];
+
+        if (_.isNull(setValue))
+          return this.set('executionOn', null);
+
+        if (!_.isNull(setValue) && !moment.isMoment(setValue))
+          throw new Error('No moment object provided!');
+
+        return this.set('executionOn', newValue);
+      } else {
+        // getter
+        getValue = this.get('executionOn');
+
+        return moment(getValue);
+      }
+    }
   });
 });
