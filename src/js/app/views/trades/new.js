@@ -2,73 +2,106 @@ define([
     'channel',
     'marionette',
     'jquery',
+    'underscore',
     'moment',
     'app/templates/trades/new',
-    'bootstrap'
-  ], function (channel, Marionette, $, moment, template) {
+    'bootstrap',
+    'underscore.string'
+  ], function (
+    channel,
+    Marionette,
+    $,
+    _,
+    moment,
+    template
+  ) {
   return Marionette.ItemView.extend({
     template: template,
 
     events: {
-      'submit': 'create',
+      'submit form.new-trade': 'save',
       'click button.cancel': 'cancel',
-      'change input[name=currency]': 'onCurrencyChecked'
+      'change select.currency': 'selectCurrency',
+      'click button.currency-toggle': 'toggleCurrency'
     },
 
     initialize: function (options) {
-      this.model = options.model;
+      this.currencies = options.currencies;
     },
 
     onShow: function () {
+      var $currency = this.$('select.currency');
+
+      this.populateCurrencySelect($currency);
     },
 
-    onCurrencyChecked: function () {
-      var currency = $('input[name=currency]:checked').val();
+    populateCurrencySelect: function ($select) {
+      var option = $('<option>').val(null).text('Select currency...');
+      $select.append(option);
 
-      this.$('.btc-price-currency').text(currency);
+      this.currencies.each(function (currency) {
+        var option = $('<option>')
+          .val(currency.get('code'))
+          .text(currency.get('code') + ' → ' + currency.get('name'));
+
+        $select.append(option);
+      }, this);
     },
 
-    create: function () {
-      var raw = {
-        executionOn: this.$('.execution-on').val(),
-        btcPrice: this.$('.btc-price').val(),
-        isBtcBuy: this.$('.is-btc-buy').is(':checked'),
-        isBtcSell: this.$('.is-btc-sell').is(':checked'),
-        amount: this.$('.amount').val(),
-        fee: this.$('.fee').val(),
-        ignore: this.$('.ignore').is(':checked'),
-        service: this.$('.service').val(),
-        tags: this.$('.tags').val(),
-      };
+    save: function (event) {
+      event.preventDefault();
 
-      this.model.set({
-        executionOn: moment(raw.execution_on),
-        isBtcSell: raw.isBtcSell,
-        isBtcBuy: raw.isBtcBuy,
-        currencyIsoCode: 'XXX',
-        btcPrice: raw.btcPrice,
-        btcAmount: raw.amount,
-        xxxAmount: raw.amount,
-        btcFee: raw.fee,
-        xxxFee: raw.fee,
-        isIgnored: raw.ignore,
-        isDeleted: false,
-        tradingServiceName: raw.service,
-        tradingServiceIdentifier: null,
-        tags: raw.tags
-      });
+      var date = this.$('.execution-date').val(),
+          time = this.$('.execution-time').val(),
+          currency = this.$('.currency').val(),
+          price = this.$('.btc-price').val(),
+          isBtcBuy = this.$('.is-btc-buy').is(':checked'),
+          isBtcSell = this.$('.is-btc-sell').is(':checked'),
+          amount = this.$('.amount').val(),
+          isAmountInBtc = this.$('.is-amount-in-btc').is(':checked'),
+          isAmountInOther = this.$('.is-amount-in-other').is(':checked'),
+          fee = this.$('.fee').val(),
+          isFeeInBtc = this.$('.is-fee-in-btc').is(':checked'),
+          isFeeInOther = this.$('.is-fee-in-other').is(':checked');
+
+      this.model.set('isBtcSell', isBtcSell);
+      this.model.set('isBtcBuy', isBtcBuy);
+      this.model.executionOn(moment(_.str.join(' ', date, time)));
+      this.model.btcPrice(/* monetary object: currency, price */);
+      this.model.amount(/* monetary object: currency, price */);
+      this.model.fee(/* monetary object: currency, price */);
 
       if (this.model.isValid()) {
         channel.commands.execute('app:create:trade', this.model);
       } else {
+        // not implemented yet
       }
-
-      return false;
     },
 
-    cancel: function () {
+    cancel: function (event) {
+      event.preventDefault();
+
       channel.commands.execute('app:discard:trade');
-      return false;
+    },
+
+    selectCurrency: function () {
+      var $select = this.$('select.currency'),
+          $price = this.$('.btc-price-currency'),
+          $amount = this.$('.is-amount-in-other').parent(),
+          $fee = this.$('.is-fee-in-other').parent(),
+          currency = $select.val();
+
+      if (!_.isEmpty(currency)) {
+        _.each([$price, $amount, $fee], function ($element) {
+          $element.find('.unset').hide();
+          $element.find('.set').show().text(currency);
+        });
+      } else {
+        _.each([$price, $amount, $fee], function ($element) {
+          $element.find('.unset').show();
+          $element.find('.set').hide().text('');
+        });
+      }
     }
   });
 });

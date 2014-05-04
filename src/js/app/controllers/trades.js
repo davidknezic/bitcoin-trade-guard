@@ -2,10 +2,21 @@ define([
     'channel',
     'backbone',
     'marionette',
+    'app/views/layouts/header-main-side',
     'app/views/trades/new',
     'app/views/trades/list',
+    'app/views/panels/importing',
     'app/models/trade'
-  ], function (channel, Backbone, Marionette, NewTradeView, TradesView, TradeModel) {
+  ], function (
+    channel,
+    Backbone,
+    Marionette,
+    HeaderMainSideLayout,
+    NewTradeView,
+    TradesView,
+    ImportingPanelView,
+    TradeModel
+  ) {
   return Marionette.Controller.extend({
     initialize: function (options) {
       this.trades = channel.reqres.request('app:data:trades');
@@ -23,12 +34,24 @@ define([
     },
 
     newTrade: function () {
-      var view = new NewTradeView({
-        model: new TradeModel()
+      var newTradeView,
+          importingPanelView,
+          layout;
+
+      newTradeView = new NewTradeView({
+        model: new TradeModel(),
+        currencies: channel.reqres.request('app:data:currencies')
       });
 
+      importingPanelView = new ImportingPanelView();
+
+      layout = new HeaderMainSideLayout();
+
       channel.commands.execute('app:title:set', 'New Trade');
-      channel.commands.execute('app:content:show', view);
+      channel.commands.execute('app:content:show', layout);
+
+      layout.main.show(newTradeView);
+      layout.side.show(importingPanelView);
 
       Backbone.history.navigate('/trades/new');
     },
