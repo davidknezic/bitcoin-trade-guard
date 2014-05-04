@@ -7,12 +7,11 @@ define([
     'app/views/navigation',
     'app/views/footer',
     'app/collections/trades',
+    'app/collections/currencies',
     'app/controllers/static',
     'app/controllers/trades',
     'app/routers/static',
     'app/routers/trades'
-  ], function (channel, _, Backbone, Marionette, LayoutView, NavView, FooterView,
-               Trades, StaticController, TradesController, StaticRouter, TradesRouter) {
   ], function (
     channel,
     _,
@@ -22,6 +21,7 @@ define([
     NavView,
     FooterView,
     Trades,
+    Currencies,
     StaticController,
     TradesController,
     StaticRouter,
@@ -49,9 +49,14 @@ define([
 
   App.addInitializer(function (options) {
     var trades = new Trades();
+    var currencies = new Currencies();
 
     channel.reqres.setHandler('app:data:trades', function () {
       return trades;
+    });
+
+    channel.reqres.setHandler('app:data:currencies', function () {
+      return currencies;
     });
   });
 
