@@ -1,6 +1,6 @@
 define([
     'marionette',
-    'app/templates/layout'
+    'app/templates/layouts/app'
   ], function (Marionette, template) {
   return Marionette.Layout.extend({
     template: template,

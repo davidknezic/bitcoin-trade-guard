@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'app/views/layout',
+    'app/views/layouts/app',
     'app/views/navigation',
     'app/views/footer',
     'app/collections/trades',
@@ -13,6 +13,20 @@ define([
     'app/routers/trades'
   ], function (channel, _, Backbone, Marionette, LayoutView, NavView, FooterView,
                Trades, StaticController, TradesController, StaticRouter, TradesRouter) {
+  ], function (
+    channel,
+    _,
+    Backbone,
+    Marionette,
+    AppLayout,
+    NavView,
+    FooterView,
+    Trades,
+    StaticController,
+    TradesController,
+    StaticRouter,
+    TradesRouter
+  ) {
   var App = new Marionette.Application({});
 
   App.addInitializer(function (options) {
@@ -22,20 +36,14 @@ define([
   });
 
   App.addInitializer(function (options) {
-    var layout = new LayoutView({
-      el: 'body'
-    });
-
+    var layout = new AppLayout({ el: 'body' });
     layout.render();
 
     layout.navigation.show(new NavView());
     layout.footer.show(new FooterView());
 
-    _.each(layout.regions, function (selector, name) {
-      var commandName = 'app:' + name + ':show';
-      channel.commands.setHandler(commandName, function (view) {
-        layout[name].show(view);
-      });
+    channel.commands.setHandler('app:content:show', function (view) {
+      layout.content.show(view);
     });
   });
 
