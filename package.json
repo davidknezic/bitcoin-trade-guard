@@ -2,15 +2,33 @@
   "name": "bitcoin-trade-guard",
   "version": "0.0.1",
   "author": "David Knezic <davidknezic@gmail.com>",
-  "description": "Bitcoin trade analyzer. Browser based. Truth telling. Face it.",
+  "description": "Bitcoin trade analyzer. Browser based. Truth telling.",
+  "license": "MIT",
   "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidknezic/bitcoin-trade-guard.git"
+  },
   "keywords": [
     "bitcoin",
     "trade",
     "guard"
   ],
   "scripts": {
-    "test": "........"
+    "test": "true",
+    "start": "node server.js"
+  },
+  "config": {
+    "host": "0.0.0.0",
+    "port": "8080",
+    "root": "./build"
+  },
+  "dependencies": {
+    "colors": "^0.6.2",
+    "connect": "^2.14.5",
+    "parseurl": "^1.0.1",
+    "send": "^0.3.0",
+    "mime": "^1.2.11"
   },
   "devDependencies": {
     "grunt": "^0.4.4",

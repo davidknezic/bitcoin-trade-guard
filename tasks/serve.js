@@ -2,8 +2,6 @@
  * Grunt 'serve' task: Serve the app without building it.
  */
 
-'use strict';
-
 function createServeStaticFiles(options) {
   var path = require('path');
   var parseurl = require('parseurl');
@@ -33,7 +31,6 @@ function createServeStaticFiles(options) {
     function directory() {
       next();
     };
-
 
     send(req, path)
       .maxage(options.maxAge || 0)
