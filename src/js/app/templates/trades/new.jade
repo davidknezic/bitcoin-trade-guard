@@ -1,99 +1,87 @@
-.container-header
+form.new-trade.form-horizontal(action = "#")
   .row
-    .col-md-12
-      h1 New trade
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Execution date
+        .col-xs-8
+          input.execution-date.form-control(type="date", required)
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Execution time
+        .col-xs-8
+          input.execution-time.form-control(type="time", required)
 
-.container-content
   .row
-    .col-md-12
-      .alert.alert-danger
-        strong Oh snap!
-        span &nbsp;
-        span There are errors in the form, which prevent me to save the trade!
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Currency
+        .col-xs-8
+          select.currency.form-control(required)
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Bitcoin price
+        .col-xs-8
+          .input-group
+            span.btc-price-currency.input-group-addon
+              span.unset.fa.fa-ellipsis-h
+              span.set
+            input.btc-price.form-control(type="number", required)
 
   .row
-    .col-sm-9
-      form.form-horizontal
-        .form-group
-          label.col-sm-2.control-label Execution date
-          .col-sm-4
-            input.execution-on.form-control(type="date")
-          label.col-sm-2.control-label Execution time
-          .col-sm-4
-            input.execution-time.form-control(type="time")
-        .form-group.has-error
-          label.col-sm-2.control-label Currency
-          .col-sm-4
-            .radio-buttons.btn-group.btn-group-justified(data-toggle="buttons")
-              label.btn.btn-default
-                input(type="radio", name="currency", value="USD")
-                span USD
-              label.btn.btn-default
-                input(type="radio", name="currency", value="EUR")
-                span EUR
-              label.btn.btn-default
-                input(type="radio", name="currency", value="CHF")
-                span CHF
-          label.col-sm-2.control-label Bitcoin price
-          .col-sm-4
-            .input-group
-              span.btc-price-currency.input-group-addon USD
-              input.btc-price.form-control(type="number")
+    .col-sm-12
+      br.a-decent-separator
 
-        .form-group
-        .form-group
-          label.col-sm-2.control-label Type
-          .col-sm-10
-            .radio-buttons.btn-group.btn-group-justified(data-toggle="buttons")
-              label.btn.btn-default
-                input.is-btc-buy(type="radio", name="type")
-                span Buy Bitcoin
-              label.btn.btn-default
-                input.is-btc-sell(type="radio", name="type")
-                span Sell Bitcoin
-        .form-group
-          label.col-sm-2.control-label Amount
-          .col-sm-4
-            .input-group
-              span.input-group-btn
-                button.btn.btn-default(type="button") BTC
-              input.amount.form-control(type="number")
-          label.col-sm-2.control-label Fee
-          .col-sm-4
-            .input-group
-              span.input-group-btn
-                button.btn.btn-default(type="button") BTC
-              input.fee.form-control(type="number")
-        .hl
-        .form-group
-        .form-group
-          label.col-sm-2.control-label Properties
-          .col-sm-10
-            .checkbox-buttons.btn-group.btn-group-justified(data-toggle="buttons")
-              label.btn.btn-default
-                input.ignore(type="checkbox")
-                span Ignore
-        .form-group
-          label.col-sm-2.control-label Service
-          .col-sm-10
-            input.service.form-control(type="text")
-        .form-group
-          label.col-sm-2.control-label Tags
-          .col-sm-10
-            input.tags.form-control(type="text")
+  .row
+    .col-sm-12
+      .form-group
+        label.col-sm-2.col-xs-4.control-label Type
+        .col-sm-10.col-xs-8
+          .radio-buttons.btn-group.btn-group-justified(data-toggle="buttons")
+            label.btn.btn-default
+              input.is-btc-buy(type="radio", name="type")
+              span Buy Bitcoin
+            label.btn.btn-default
+              input.is-btc-sell(type="radio", name="type")
+              span Sell Bitcoin
 
-        .form-group
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            button.save.btn.btn-primary(type="submit") Save
-            span &nbsp;
-            button.cancel.btn.btn-default(type="button") Cancel
-    .col-sm-3.hidden-xs
-      .panel.panel-info
-        .panel-heading How about importing trades?
-        .panel-body
-          p You can import your trades automatically from this services:
-        div.list-group
-          a.list-group-item(href="#") Bitstamp
-          a.list-group-item(href="#") Coinbase
-          a.list-group-item(href="#") LocalBitcoins
+  .row
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Amount
+        .col-xs-8
+          .input-group
+            .input-group-btn(data-toggle="buttons")
+              label.btn.btn-default
+                input.is-amount-in-btc(type="radio", name="amount-currency")
+                span BTC
+              label.btn.btn-default
+                input.is-amount-in-other(type="radio", name="amount-currency")
+                span.unset.fa.fa-ellipsis-h
+                span.set
+            input.amount.form-control(type="number", required)
+    .col-sm-6
+      .form-group
+        label.col-xs-4.control-label Fee
+        .col-xs-8
+          .input-group
+            .input-group-btn(data-toggle="buttons")
+              label.btn.btn-default
+                input.is-fee-in-btc(type="radio", name="fee-currency")
+                span BTC
+              label.btn.btn-default
+                input.is-fee-in-other(type="radio", name="fee-currency")
+                span.unset.fa.fa-ellipsis-h
+                span.set
+            input.fee.form-control(type="number", step="0.01", required)
+
+  .row
+    .col-sm-12
+      br.a-decent-separator
+
+  .row
+    .col-sm-12
+      .form-group
+        .col-sm-offset-2.col-sm-10.col-xs-offset-4.col-xs-8
+          button.save.btn.btn-primary(type="submit") Save
+          span &nbsp;
+          button.cancel.btn.btn-default(type="button") Cancel
