@@ -5,20 +5,17 @@
 @import "facts.less";
 @import "navigation.less";
 
-.navbar {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-color: orange;
-  border-radius: 0;
-}
-
 .container-header {
   .container-fluid;
 
   padding-top: 20px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+
+  background-image: linear-gradient(to right,rgba(215,51,0,0.8),rgba(215,147,2,0.7));
+
+  h1 {
+    color: white;
+  }
 }
 
 .container-content {
@@ -26,6 +23,8 @@
 
   padding-top: 20px;
   padding-bottom: 50px;
+
+  background-color: white;
 }
 
 .container-footer {
@@ -33,4 +32,5 @@
 
   border-top: 1px solid #ddd;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
