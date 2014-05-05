@@ -1,5 +1,7 @@
 # Bitcoin Trade Guard
 
+[![Build Status][status]][travis]
+
 ## Important notice
 
 This app is in an early development stage and not ready for production yet.
@@ -22,3 +24,6 @@ This app provides numerous features which help you with your trading activity:
 
 Help is always welcome!
 Contribute to the project by forking and submitting a pull request.
+
+[status]: https://travis-ci.org/davidknezic/bitcoin-trade-guard.svg
+[travis]: https://travis-ci.org/davidknezic/bitcoin-trade-guard
