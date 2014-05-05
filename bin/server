@@ -1,0 +1,84 @@
+#!/usr/bin/env node
+
+/**
+ * This is a productive web server, which serves the built web application.
+ */
+
+var argv = require('optimist').argv,
+    colors = require('colors'),
+    connect = require('connect'),
+    middleware = require('../lib/middleware'),
+    http = require('http'),
+    path = require('path');
+
+if (argv.h || argv.help) {
+  console.log([
+    "usage: server [path] [options]",
+    "",
+    "options:",
+    "  -p                 Port to use " + "[8080]".yellow,
+    "  -a                 Address to use " + "[0.0.0.0]".yellow,
+    "  -h --help          Print this list and exit.",
+    ""
+  ].join('\n'));
+  process.exit();
+}
+
+var host = argv.a || '0.0.0.0',
+    port = argv.p || parseInt(process.env.PORT, 10) || 8080,
+    root = argv._[0];
+
+console.info([
+  'Options received:',
+  '  host: ' + host.yellow,
+  '  port: ' + port.toString().yellow,
+  '  root: ' + root.yellow,
+  ''
+].join('\n'));
+
+var app = connect();
+
+app.use(middleware.staticFiles({
+  root: path.resolve(root),
+  maxAge: 3600,
+  hidden: false
+}));
+
+app.use(middleware.deadEnd({
+  file: path.resolve(root, './index.html'),
+  maxAge: 3600
+}));
+
+var server = http.createServer(app);
+
+console.info('Starting server...\n');
+
+server
+  .listen(port, host)
+  .on('listening', function () {
+    console.info([
+      'Listening on:',
+      '  host: ' + host.yellow,
+      '  port: ' + port.toString().yellow,
+      ''
+    ].join('\n'));
+
+    console.info('Hit CTRL-C to stop server.');
+  })
+  .on('error', function (err) {
+    console.error('Error occured.'.red);
+    console.error(err.message.red);
+
+    console.info('Server stopped!'.red);
+
+    process.exit(1);
+  });
+
+if (process.platform !== 'win32') {
+  // Signal handlers don't work on Windows!
+  process.on('SIGINT', function () {
+    console.info('Server stopped through signal handler!'.red);
+
+    process.exit();
+  });
+}

@@ -111,4 +111,6 @@ module.exports = function (grunt) {
     'copy:build',
     'clean:templates'
   ]);
+
+  grunt.registerTask('test', []);
 };
