@@ -16,19 +16,15 @@
   ],
   "scripts": {
     "test": "true",
-    "start": "node server.js"
-  },
-  "config": {
-    "host": "0.0.0.0",
-    "port": "8080",
-    "root": "./build"
+    "start": "./bin/server ./build"
   },
   "dependencies": {
     "colors": "^0.6.2",
     "connect": "^2.14.5",
     "parseurl": "^1.0.1",
     "send": "^0.3.0",
-    "mime": "^1.2.11"
+    "mime": "^1.2.11",
+    "optimist": "^0.6.1"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
