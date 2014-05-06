@@ -17,6 +17,7 @@ require.config({
     'moment': '../bower_components/moment/min/moment-with-langs',
     'd3': '../bower_components/d3/d3',
 
+    'monetary': 'lib/monetary',
     'validators': 'lib/validators'
   },
 
