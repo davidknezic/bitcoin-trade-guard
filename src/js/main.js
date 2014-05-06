@@ -15,7 +15,10 @@ require.config({
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
     'jade': '../bower_components/jade/runtime',
     'moment': '../bower_components/moment/min/moment-with-langs',
-    'd3': '../bower_components/d3/d3'
+    'd3': '../bower_components/d3/d3',
+
+    'monetary': 'lib/monetary',
+    'validators': 'lib/validators'
   },
 
   shim: {

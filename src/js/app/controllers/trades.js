@@ -26,7 +26,7 @@ define([
       channel.commands.setHandler('app:show:trades', this.showTrades);
 
       channel.commands.setHandler('app:discard:trade', function () {
-        channel.commands.execute('app:show:overview');
+        channel.commands.execute('app:show:dashboard');
       });
     },
 
@@ -62,7 +62,7 @@ define([
       trades.push(trade);
       trade.save();
 
-      channel.commands.execute('app:show:overview');
+      channel.commands.execute('app:show:dashboard');
     },
 
     showTrades: function () {

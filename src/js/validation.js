@@ -1,7 +1,7 @@
 define([
     'backbone',
     'backbone.validation',
-    'lib/validators/all'
+    'validators'
   ], function (Backbone) {
   return Backbone.Validation;
 });

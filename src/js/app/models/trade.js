@@ -2,28 +2,27 @@ define([
     'app/models/base',
     'app/validations/trade',
     'moment',
+    'monetary',
     'underscore'
   ], function (
     BaseModel,
     validation,
     moment,
+    monetary,
     _
   ) {
   return BaseModel.extend({
-    validation: validation,
+    //validation: validation,
     defaults: {
       'executionOn': null,
       'isBtcSell': false,
       'isBtcBuy': false,
-      'currencyIsoCode': 'usd',
-      'btcPrice': 0.0,
-      'btcAmount': 0.0,
-      'xxxAmount': 0.0,
-      'btcFee': 0.0,
-      'xxxFee': 0.0,
+      'price': null,
+      'amount': null,
+      'fee': null,
       'isIgnored': false,
       'isDeleted': false,
-      'serviceName': '',
+      'serviceName': null,
       'serviceIdentifier': null,
       'tags': []
     },
@@ -50,42 +49,70 @@ define([
       }
     },
 
-    // not implemented yet
-    btcPrice: function () {
+    price: function () {
       var setValue, getValue;
 
       if (arguments.length > 0) {
         // setter
         setValue = arguments[0];
+
+        if (_.isNull(setValue))
+          return this.set('price', null);
+
+        if (!_.isNull(setValue) && !monetary.isMonetary(setValue))
+          throw new Error('No monetary object provided!');
+
+        return this.set('price', setValue.format());
+        setValue = arguments[0];
       } else {
         // getter
-        getValue = null;
+        getValue = this.get('price');
+
+        return monetary(getValue);
       }
     },
 
-    // not implemented yet
     amount: function () {
       var setValue, getValue;
 
       if (arguments.length > 0) {
         // setter
         setValue = arguments[0];
+
+        if (_.isNull(setValue))
+          return this.set('amount', null);
+
+        if (!_.isNull(setValue) && !monetary.isMonetary(setValue))
+          throw new Error('No monetary object provided!');
+
+        return this.set('amount', setValue.format());
       } else {
         // getter
-        getValue = null;
+        getValue = this.get('amount');
+
+        return monetary(getValue);
       }
     },
 
-    // not implemented yet
     fee: function () {
       var setValue, getValue;
 
       if (arguments.length > 0) {
         // setter
         setValue = arguments[0];
+
+        if (_.isNull(setValue))
+          return this.set('fee', null);
+
+        if (!_.isNull(setValue) && !monetary.isMonetary(setValue))
+          throw new Error('No monetary object provided!');
+
+        return this.set('fee', setValue.format());
       } else {
         // getter
-        getValue = null;
+        getValue = this.get('fee');
+
+        return monetary(getValue);
       }
     }
   });
