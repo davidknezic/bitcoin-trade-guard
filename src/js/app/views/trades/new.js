@@ -67,7 +67,7 @@ define([
       this.model.set('isBtcSell', isBtcSell);
       this.model.set('isBtcBuy', isBtcBuy);
       this.model.executionOn(moment(_.str.join(' ', date, time)));
-      this.model.btcPrice(/* monetary object: currency, price */);
+      this.model.price(/* monetary object: currency, price */);
       this.model.amount(/* monetary object: currency, price */);
       this.model.fee(/* monetary object: currency, price */);
 

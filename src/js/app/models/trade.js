@@ -15,12 +15,9 @@ define([
       'executionOn': null,
       'isBtcSell': false,
       'isBtcBuy': false,
-      'currencyIsoCode': 'usd',
-      'btcPrice': 0.0,
-      'btcAmount': 0.0,
-      'xxxAmount': 0.0,
-      'btcFee': 0.0,
-      'xxxFee': 0.0,
+      'price': null,
+      'amount': null,
+      'fee': null,
       'isIgnored': false,
       'isDeleted': false,
       'serviceName': '',
@@ -51,7 +48,7 @@ define([
     },
 
     // not implemented yet
-    btcPrice: function () {
+    price: function () {
       var setValue, getValue;
 
       if (arguments.length > 0) {
