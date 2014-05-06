@@ -4,6 +4,7 @@ define([
     'jquery',
     'underscore',
     'moment',
+    'monetary',
     'app/templates/trades/new',
     'bootstrap',
     'underscore.string'
@@ -13,6 +14,7 @@ define([
     $,
     _,
     moment,
+    monetary,
     template
   ) {
   return Marionette.ItemView.extend({
@@ -66,10 +68,18 @@ define([
 
       this.model.set('isBtcSell', isBtcSell);
       this.model.set('isBtcBuy', isBtcBuy);
-      this.model.executionOn(moment(_.str.join(' ', date, time)));
-      this.model.price(/* monetary object: currency, price */);
-      this.model.amount(/* monetary object: currency, price */);
-      this.model.fee(/* monetary object: currency, price */);
+      this.model.executionOn(moment(
+        _.str.join(' ', date, time)
+      ));
+      this.model.price(monetary(
+        _.str.join(' ', currency, price)
+      ));
+      this.model.amount(monetary(
+        _.str.join(' ', (isAmountInOther ? currency : 'BTC'), amount)
+      ));
+      this.model.fee(monetary(
+        _.str.join(' ', (isFeeInOther ? currency : 'BTC'), fee)
+      ));
 
       if (this.model.isValid()) {
         channel.commands.execute('app:create:trade', this.model);
