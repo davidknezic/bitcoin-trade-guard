@@ -20,6 +20,38 @@ This app provides numerous features which help you with your trading activity:
 * Check the stats at historical moments
 * Keep your data local or save it to the cloud
 
+## Build
+
+In order to build the web app, you need to ensure that you have `git`,
+`nodejs` and its package manager `npm` installed on your system.
+With these requirements fulfilled, you can build from shell by
+following this example:
+
+    # Get the project
+    $ git clone https://github.com/davidknezic/bitcoin-trade-guard.git
+    
+    # Change into project folder
+    $ cd bitcoin-trade-guard/
+    
+    # Install grunt & bower globally, so we can use their cli commands
+    $ npm install -g grunt-cli bower
+    
+    # Install project dependencies used for building
+    $ npm install
+    
+    # Install project dependencies used on client side
+    $ bower install
+    
+    # Optional: Run the tests
+    $ grunt test
+    
+    # Build the project
+    $ grunt build
+
+The built web app is placed into the newly created `build`
+folder, located in the project root. You can take these files and let
+them beeing served by any web server.
+
 ## Contributing
 
 Help is always welcome!
