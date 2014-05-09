@@ -27,26 +27,28 @@ In order to build the web app, you need to ensure that you have `git`,
 With these requirements fulfilled, you can build from shell by
 following this example:
 
-    # Get the project
-    $ git clone https://github.com/davidknezic/bitcoin-trade-guard.git
-    
-    # Change into project folder
-    $ cd bitcoin-trade-guard/
-    
-    # Install grunt & bower globally, so we can use their cli commands
-    $ npm install -g grunt-cli bower
-    
-    # Install project dependencies used for building
-    $ npm install
-    
-    # Install project dependencies used on client side
-    $ bower install
-    
-    # Optional: Run the tests
-    $ grunt test
-    
-    # Build the project
-    $ grunt build
+```bash
+# Get the project
+git clone https://github.com/davidknezic/bitcoin-trade-guard.git
+
+# Change into project folder
+cd bitcoin-trade-guard/
+
+# Install grunt & bower globally, so we can use their cli commands
+npm install -g grunt-cli bower
+
+# Install project dependencies used for building
+npm install
+
+# Install project dependencies used on client side
+bower install
+
+# Optional: Run the tests
+grunt test
+
+# Build the project
+grunt build
+```
 
 The built web app is placed into the newly created `build`
 folder, located in the project root. You can take these files and let
