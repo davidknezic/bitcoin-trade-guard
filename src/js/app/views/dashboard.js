@@ -1,27 +1,26 @@
 define([
     'channel',
     'marionette',
-    'app/templates/dashboard'
-  ], function (channel, Marionette, template) {
-  return Marionette.ItemView.extend({
+    'app/templates/dashboard',
+    'app/views/trades/latest'
+  ], function (channel, Marionette, template, LatestTradesView) {
+  return Marionette.Layout.extend({
     template: template,
 
-    events: {
-      'click button.add-trade': 'addTrade',
-      'click button.show-all-trades': 'showAllTrades'
-    },
+    regions: {
+      latestTrades: '.latest-trades'
+   },
 
     initialize: function (options) {
+      this.trades = options.trades;
     },
 
-    addTrade: function () {
-      channel.commands.execute('app:show:add-trade');
-      return false;
-    },
+    onShow: function () {
+      var latestTradesView = new LatestTradesView({
+        trades: this.trades
+      });
 
-    showAllTrades: function () {
-      channel.commands.execute('app:show:trades');
-      return false;
+      this.latestTrades.show(latestTradesView);
     }
   });
 });

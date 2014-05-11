@@ -1,7 +1,8 @@
 define([
     'lib/monetary/monetary',
-    'lib/monetary/currency'
-  ], function (Monetary, Currency) {
+    'lib/monetary/currency',
+    'lib/monetary/parsing'
+  ], function (Monetary, Currency, parsing) {
   var monetary,
       VERSION = "0.0.0",
       currencies = {};
@@ -9,11 +10,18 @@ define([
   /**
    * Creates a new monetary top level function.
    */
-  monetary = function () {
+  monetary = function (input, locale) {
     var config;
 
     config = {};
     config._isAMonetaryObject = true;
+    config._i = input;
+
+    // TODO: Use global locale if empty
+    config._l = locale;
+
+    // Parse monetary from input
+    parsing.parse(config);
 
     return new Monetary(config);
   };
@@ -56,6 +64,9 @@ define([
   monetary.locale = function (key, values) {
   };
 
+  /**
+   * Version
+   */
   monetary.version = VERSION;
 
   return monetary;

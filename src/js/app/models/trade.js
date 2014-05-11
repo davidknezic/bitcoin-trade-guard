@@ -12,7 +12,6 @@ define([
     _
   ) {
   return BaseModel.extend({
-    //validation: validation,
     defaults: {
       'executionOn': null,
       'isBtcSell': false,
@@ -27,6 +26,12 @@ define([
       'tags': []
     },
 
+    /**
+     * Get or set the trades execution datetime.
+     *
+     * @param {moment} [newValue] - New execution datetime.
+     * @returns {moment} Newly set or unchanged execution datetime.
+     */
     executionOn: function () {
       var setValue, getValue;
 
@@ -49,6 +54,12 @@ define([
       }
     },
 
+    /**
+     * Get or set the price of one Bitcoin.
+     *
+     * @param {monetary} [newValue] - New Bitcoin price.
+     * @returns {monetary} Newly set or unchanged Bitcoin price.
+     */
     price: function () {
       var setValue, getValue;
 
@@ -72,6 +83,12 @@ define([
       }
     },
 
+    /**
+     * Get or set the trades effective amount.
+     *
+     * @param {monetary} [newValue] - New amount.
+     * @returns {monetary} Newly set or unchanged amount.
+     */
     amount: function () {
       var setValue, getValue;
 
@@ -94,6 +111,12 @@ define([
       }
     },
 
+    /**
+     * Get or set the trades fee.
+     *
+     * @param {monetary} [newValue] - New fee.
+     * @returns {monetary} Newly set or unchanged fee.
+     */
     fee: function () {
       var setValue, getValue;
 
@@ -113,6 +136,57 @@ define([
         getValue = this.get('fee');
 
         return monetary(getValue);
+      }
+    },
+
+    /**
+     * Get the trades amount in Bitcoin.
+     *
+     * @returns {monetary} Total amount in Bitcoin.
+     */
+    amountInBtc: function () {
+      var amount = this.amount(),
+          pricePerBtc = this.price(),
+          pricePerFiat;
+
+      if (amount.isInvalid()) {
+        return monetary.invalid();
+      }
+
+      if (amount.currency() === 'BTC') {
+        // amount already in BTC
+        return amount;
+      } else {
+        // convert amount to BTC
+        if (pricePerBtc.isInvalid()) {
+          return monetary.invalid();
+        }
+
+        pricePerFiat = pricePerBtc.inverseRate();
+
+        return amount.convert(pricePerFiat);
+      }
+    },
+
+    /**
+     * Get the trades amount in fiat currency.
+     *
+     * @returns {monetary} Total amount in fiat currency.
+     */
+    amountInFiat: function () {
+      var amount = this.amount(),
+          pricePerBtc = this.price();
+
+      if (amount.isInvalid() || pricePerBtc.isInvalid()) {
+        return monetary.invalid();
+      }
+
+      if (amount.currency() === pricePerBtc.currency()) {
+        // amount already in fiat
+        return amount;
+      } else {
+        // convert amount to fiat
+        return amount.convert(pricePerBtc);
       }
     }
   });
