@@ -38,9 +38,14 @@ define([
       this.onTradesUpdate();
     },
 
+    onClose: function () {
+      this.trades.off(null, null, this);
+    },
+
     onTradesUpdate: function () {
       var latest = _.chain(this.trades.models)
-        .sortBy("executionOn")
+        .sortBy(function (trade) { return trade.attributes.executionOn; })
+        .reverse()
         .first(5)
         .value();
 
@@ -49,8 +54,6 @@ define([
 
     showTrade: function (event) {
       event.preventDefault();
-
-      
 
       console.log(arguments);
     },
