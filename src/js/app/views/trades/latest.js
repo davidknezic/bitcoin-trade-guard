@@ -14,23 +14,20 @@ define([
   return Marionette.CompositeView.extend({
     template: template,
     itemView: LatestTradesItemView,
-    itemViewContainer: "ul.latest-trades",
-
-    tagName: "ul",
-    className: "list-group",
+    itemViewContainer: ".latest-trades",
 
     itemViewOptions: {
-      tagName: "li",
-      className: "list-group-item"
-    },
-
-    itemEvents: {
-      "click a.show": "showTrade"
+      tagName: "a",
+      className: "latest-trades-item list-group-item",
+      attributes: {
+        href: "#"
+      }
     },
 
     events: {
       'click button.add-trade': 'addTrade',
-      'click button.show-all-trades': 'showAllTrades'
+      'click button.show-all-trades': 'showAllTrades',
+      'click a': 'showTrade'
     },
 
     initialize: function (options) {
@@ -44,13 +41,17 @@ define([
     onTradesUpdate: function () {
       var latest = _.chain(this.trades.models)
         .sortBy("executionOn")
-        .first(3)
+        .first(5)
         .value();
 
       this.collection.reset(latest);
     },
 
-    showTrade: function () {
+    showTrade: function (event) {
+      event.preventDefault();
+
+      
+
       console.log(arguments);
     },
 

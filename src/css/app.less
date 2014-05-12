@@ -4,6 +4,8 @@
 @import "responsive.less";
 @import "facts.less";
 @import "navigation.less";
+@import "trades.less";
+@import "headings.less";
 
 .container-header {
   .container-fluid;
@@ -11,8 +13,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
 
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  background-color: @header-bg;
+  border-bottom: 1px solid @header-border-color;
 }
 
 .container-content {
@@ -27,7 +29,7 @@
 .container-footer {
   .container-fluid;
 
-  border-top: 1px solid #ddd;
+  border-top: 1px solid @footer-border-color;
   padding-top: 20px;
   padding-bottom: 20px;
 }

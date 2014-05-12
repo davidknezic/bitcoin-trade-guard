@@ -7,53 +7,48 @@ define([
   return Marionette.ItemView.extend({
     template: template,
 
-    events: {
-    },
-
-    initialize: function (options) {
+    ui: {
+      buy: '.buy',
+      sell: '.sell',
+      execution: '.execution-on',
+      amount: '.amount',
+      labels: '.labels',
+      text: '.text'
     },
 
     onShow: function () {
-      var verb;
+      var isBuy = this.model.get('isBtcBuy'),
+          isSell = this.model.get('isBtcSell'),
+          executionOn = this.model.executionOn(),
+          amount = this.model.amount(),
+          fee = this.model.fee(),
+          amountInBtc = this.model.amountInBtc(),
+          serviceName = this.model.get('serviceName'),
+          tags = this.model.get('tags'),
+          verb = (isBuy ? "bought" : "sold");
 
-      if (this.model.get('isBtcBuy')) {
-        this.$('.buy').show();
-        this.$('.sell').hide();
+      this.ui.buy.toggle(isBuy);
+      this.ui.sell.toggle(isSell);
+      this.ui.execution.text(executionOn.fromNow());
+      this.ui.execution.attr('datetime', executionOn.format());
+      this.ui.amount.text(amountInBtc.format());
+      this.ui.text.text(verb + " for " + amount.format());
 
-        verb = "bought";
-      } else if (this.model.get('isBtcSell')) {
-        this.$('.buy').hide();
-        this.$('.sell').show();
-
-        verb = "sold";
-      }
-
-      var executionOn = this.model.executionOn();
-      this.$('.execution-on').text(executionOn.fromNow());
-
-      var amount = this.model.amount();
-      var fee = this.model.fee();
-
-      var amountInBtc = this.model.amountInBtc();
-
-      this.$('.amount').text(amountInBtc.format());
-
-      var labels = this.$('.labels');
-
-      var serviceName = this.model.get('serviceName');
       if (serviceName) {
-        $('<span class="label label-primary" />')
-          .text(serviceName)
-          .appendTo(labels);
+        this.ui.labels.append(this.createLabel(serviceName, 'primary'));
+        this.ui.labels.append(' ');
       }
 
-      _.each(this.model.get('tags'), function (tag) {
-        $('<span class="label label-default" />')
-          .text(tag)
-          .appendTo(labels);
-      });
+      _.each(tags, function (tag) {
+        this.ui.labels.append(this.createLabel(tag));
+        this.ui.labels.append(' ');
+      }, this);
+    },
 
-      this.$('.text').text(verb + " for " + amount.format());
+    createLabel: function (name, type) {
+      return $(document.createElement('span'))
+        .addClass('label label-' + (type ? type : 'default'))
+        .text(name);
     }
   });
 });
