@@ -3,6 +3,7 @@ define([
     'backbone',
     'marionette',
     'app/views/layouts/header-main-side',
+    'app/views/layouts/header-main',
     'app/views/trades/new',
     'app/views/trades/list',
     'app/views/panels/importing',
@@ -12,6 +13,7 @@ define([
     Backbone,
     Marionette,
     HeaderMainSideLayout,
+    HeaderMainLayout,
     NewTradeView,
     TradesView,
     ImportingPanelView,
@@ -66,10 +68,20 @@ define([
     },
 
     showTrades: function () {
-      var view = new TradesView();
+      var volumeChartView,
+          tradesView,
+          layout;
+
+      tradesView = new TradesView({
+        collection: channel.reqres.request('app:data:trades')
+      });
+
+      layout = new HeaderMainLayout();
 
       channel.commands.execute('app:title:set', 'Trades');
-      channel.commands.execute('app:content:show', view);
+      channel.commands.execute('app:content:show', layout);
+
+      layout.main.show(tradesView);
 
       Backbone.history.navigate('/trades');
     }
