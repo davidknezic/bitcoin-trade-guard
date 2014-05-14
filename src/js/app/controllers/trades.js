@@ -6,6 +6,8 @@ define([
     'app/views/layouts/header-main',
     'app/views/trades/new',
     'app/views/trades/list',
+    'app/views/trades/show',
+    'app/views/volume',
     'app/views/panels/importing',
     'app/models/trade'
   ], function (
@@ -16,6 +18,8 @@ define([
     HeaderMainLayout,
     NewTradeView,
     TradesView,
+    ShowView,
+    VolumeChartView,
     ImportingPanelView,
     TradeModel
   ) {
@@ -26,6 +30,7 @@ define([
       channel.commands.setHandler('app:show:add-trade', this.newTrade);
       channel.commands.setHandler('app:create:trade', this.createTrade);
       channel.commands.setHandler('app:show:trades', this.showTrades);
+      channel.commands.setHandler('app:show:trade', this.showTrade);
 
       channel.commands.setHandler('app:discard:trade', function () {
         channel.commands.execute('app:show:dashboard');
@@ -72,6 +77,10 @@ define([
           tradesView,
           layout;
 
+      volumeChartView = new VolumeChartView({
+        trades: channel.reqres.request('app:data:trades')
+      });
+
       tradesView = new TradesView({
         collection: channel.reqres.request('app:data:trades')
       });
@@ -81,9 +90,24 @@ define([
       channel.commands.execute('app:title:set', 'Trades');
       channel.commands.execute('app:content:show', layout);
 
+      //layout.header.show(volumeChartView);
       layout.main.show(tradesView);
 
       Backbone.history.navigate('/trades');
+    },
+
+    showTrade: function (id) {
+      var trades = channel.reqres.request('app:data:trades'),
+          view;
+
+      view = new ShowView({
+        model: trades.get(id)
+      });
+
+      channel.commands.execute('app:title:set', 'Show trade');
+      channel.commands.execute('app:content:show', view);
+
+      Backbone.history.navigate('/trades/' + id);
     }
   });
 });

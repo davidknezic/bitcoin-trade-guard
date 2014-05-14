@@ -7,13 +7,24 @@ define([
   return Marionette.ItemView.extend({
     template: template,
 
+    tagName: "a",
+    className: "latest-trades-item list-group-item",
+    attributes: {
+      href: "#"
+    },
+
     ui: {
+      self: '',
       buy: '.buy',
       sell: '.sell',
       execution: '.execution-on',
       amount: '.amount',
       labels: '.labels',
       text: '.text'
+    },
+
+    events: {
+      'click @ui.self': 'open'
     },
 
     onShow: function () {
@@ -49,6 +60,12 @@ define([
       return $(document.createElement('span'))
         .addClass('label label-' + (type ? type : 'default'))
         .text(name);
+    },
+
+    open: function (event) {
+      event.preventDefault();
+
+      this.trigger('open', this.model);
     }
   });
 });

@@ -16,18 +16,13 @@ define([
     itemView: LatestTradesItemView,
     itemViewContainer: ".latest-trades",
 
-    itemViewOptions: {
-      tagName: "a",
-      className: "latest-trades-item list-group-item",
-      attributes: {
-        href: "#"
-      }
-    },
-
     events: {
       'click button.add-trade': 'addTrade',
-      'click button.show-all-trades': 'showAllTrades',
-      'click a': 'showTrade'
+      'click button.show-all-trades': 'showAllTrades'
+    },
+
+    itemEvents: {
+      'open': 'showTrade'
     },
 
     initialize: function (options) {
@@ -52,10 +47,10 @@ define([
       this.collection.reset(latest);
     },
 
-    showTrade: function (event) {
+    showTrade: function (eventName, view, model) {
       event.preventDefault();
 
-      console.log(arguments);
+      channel.commands.execute('app:show:trade', model.cid);
     },
 
     addTrade: function () {
