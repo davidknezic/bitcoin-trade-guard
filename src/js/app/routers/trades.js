@@ -15,6 +15,7 @@ define([
     },
 
     show: function (id) {
+      channel.commands.execute('app:show:trade', id);
     },
 
     newTrade: function () {
