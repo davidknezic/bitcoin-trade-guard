@@ -7,7 +7,7 @@ define([
     'app/views/trades/new',
     'app/views/trades/list',
     'app/views/trades/show',
-    'app/views/volume',
+    //'app/views/volume',
     'app/views/panels/importing',
     'app/models/trade'
   ], function (
@@ -19,7 +19,7 @@ define([
     NewTradeView,
     TradesView,
     ShowView,
-    VolumeChartView,
+    //VolumeChartView,
     ImportingPanelView,
     TradeModel
   ) {
@@ -77,9 +77,9 @@ define([
           tradesView,
           layout;
 
-      volumeChartView = new VolumeChartView({
+      /*volumeChartView = new VolumeChartView({
         trades: channel.reqres.request('app:data:trades')
-      });
+      });*/
 
       tradesView = new TradesView({
         collection: channel.reqres.request('app:data:trades')
