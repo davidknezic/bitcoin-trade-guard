@@ -54,6 +54,27 @@ The built web app is placed into the newly created `build`
 folder, located in the project root. You can take these files and let
 them beeing served by any web server.
 
+# Setup
+
+There is a lightweight productive server bundled with this app. You can find
+it in the `bin` folder. To run the web app you just have
+to complete all previously explained build steps and run the server:
+
+```bash
+./bin/server ./build/
+```
+
+Since the next thing to do is – in most cases – to reverse proxy the web app,
+you can configure the port and address which the server binds to. Just check
+out the possibilities by invoking the server with the help option:
+
+```bash
+./bin/server -h
+```
+
+As soon as you successfully run the server, you can open the app using your
+favorite web browser and start managing your trades!
+
 ## Contributing
 
 Help is always welcome!
