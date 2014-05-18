@@ -14,12 +14,24 @@ define([
     itemView: TradesListItemView,
     itemViewContainer: ".trades",
 
-    itemViewOptions: {
-      tagName: "a",
-      className: "trades-item list-group-item",
-      attributes: {
-        href: "#"
-      }
+    events: {
+      'click button.add-trade': 'addTrade'
+    },
+
+    itemEvents: {
+      'open': 'showTrade'
+    },
+
+    addTrade: function (event) {
+      event.preventDefault();
+
+      channel.commands.execute('app:show:add-trade');
+    },
+
+    showTrade: function (eventName, view, model) {
+      event.preventDefault();
+
+      channel.commands.execute('app:show:trade', model.cid);
     }
   });
 });

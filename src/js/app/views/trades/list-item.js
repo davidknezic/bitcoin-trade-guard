@@ -7,18 +7,25 @@ define([
   return Marionette.ItemView.extend({
     template: template,
 
+    tagName: "a",
+    className: "trades-item list-group-item",
+    
     ui: {
+      self: '',
       checkbox: '.checkbox',
       buy: '.buy',
       sell: '.sell',
       execution: '.execution-on',
       amount: '.amount',
       labels: '.labels',
-      text: '.text'
+      text: '.text',
+      open: 'a.info'
     },
 
     events: {
-      'change @ui.checkbox': 'changeSelection'
+      'change @ui.checkbox': 'select',
+      'click @ui.self': 'select',
+      'click @ui.open': 'open'
     },
 
     onShow: function () {
@@ -56,14 +63,20 @@ define([
         .text(name);
     },
 
-    changeSelection: function () {
-      var isSelected = this.ui.checkbox.is(':checked');
+    open: function (event) {
+      event.preventDefault();
 
-      if (isSelected) {
-        this.$el.addClass('list-group-item-info');
-      } else {
-        this.$el.removeClass('list-group-item-info');
-      }
+      this.trigger('open', this.model);
+    },
+
+    select: function (event) {
+      var isSelected = this.ui.checkbox.is(':checked');
+      this.toggleSelected(!isSelected);
+    },
+
+    toggleSelected: function (isSelected) {
+      this.ui.checkbox.prop('checked', isSelected);
+      this.$el.toggleClass('list-group-item-info', isSelected);
     }
   });
 });
