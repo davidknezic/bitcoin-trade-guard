@@ -38,6 +38,6 @@ require.config({
   }
 });
 
-require(['app'], function (App) {
-  App.start({});
+require(['app'], function (app) {
+  app.start();
 });
