@@ -13,6 +13,10 @@ define([
       text: '.text'
     },
 
+    events: {
+      'click a': 'select'
+    },
+
     initialize: function (options) {
     },
 
@@ -21,6 +25,12 @@ define([
       this.ui.color.css('background-color', this.model.get('color'));
 
       this.toggle(false);
+    },
+
+    select: function (event) {
+      event.preventDefault();
+
+      this.trigger('click', this.model);
     },
 
     toggle: function (isActive) {

@@ -14,7 +14,13 @@ define([
       items: '.labels-list'
     },
 
-    initialize: function () {
+    itemEvents: {
+      'click': 'clickLabel'
+    },
+
+    initialize: function (options) {
+      this.selected = options.selected;
+      this.selected.on('add remove reset', this.reselect, this)
     },
 
     onRender: function () {
@@ -28,6 +34,22 @@ define([
 
     onClose: function () {
       this.newLabelView.close();
+    },
+
+    clickLabel: function (eventName, view, model) {
+      if (this.selected.contains(model)) {
+        this.selected.remove(model);
+        view.toggle(false);
+      } else {
+        this.selected.add(model);
+        view.toggle(true);
+      }
+    },
+
+    reselect: function () {
+      this.children.each(function (view) {
+        view.toggle(this.selected.contains(view.model));
+      }, this);
     }
   });
 });

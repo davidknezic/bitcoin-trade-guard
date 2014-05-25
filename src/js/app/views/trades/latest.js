@@ -48,8 +48,6 @@ define([
     },
 
     showTrade: function (eventName, view, model) {
-      event.preventDefault();
-
       channel.commands.execute('app:show:trade', model.cid);
     },
 
