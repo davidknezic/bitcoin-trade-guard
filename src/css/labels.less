@@ -1,0 +1,53 @@
+.labels-list {
+  .list-unstyled;
+
+  li {
+    margin-bottom: @padding-base-vertical;
+  }
+
+  a.label-block {
+    text-align: left;
+    display: block;
+    padding: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: @link-color;
+
+    &:hover {
+      background-color: @gray-lighter;
+      color: @link-hover-color;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+
+    .color {
+      display: inline-block;
+      width: 6px;
+      height: 20px;
+      margin-right: 7px;
+      border-radius: 3px;
+    }
+  }
+}
+
+.new-label {
+
+  .color-preview {
+    width: @input-height-base;
+  }
+
+  ul.colors {
+    .list-unstyled;
+
+    width: 100%;
+
+    li.color {
+      height: 20px;
+      width: 0.001%;
+      display: table-cell;
+      cursor: pointer;
+    }
+  }
+}

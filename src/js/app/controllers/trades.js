@@ -82,7 +82,8 @@ define([
       });*/
 
       tradesView = new TradesView({
-        collection: channel.reqres.request('app:data:trades')
+        collection: channel.reqres.request('app:data:trades'),
+        labels: channel.reqres.request('app:data:labels')
       });
 
       layout = new HeaderMainLayout();
