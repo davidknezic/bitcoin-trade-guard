@@ -13,23 +13,29 @@
 
 .container-content
   .row
-    .main.col-sm-8
+    .main.col-sm-9
 
       .row
         .col-sm-4.text-center
-          span.label.label-warning BTC
-          br
-          span.fa.fa-angle-down
-          br
-          span.label.label-warning CHF
+          .fact
+            .fact-body
+              span.label.label-warning BTC
+              br
+              span.fa.fa-angle-down
+              br
+              span.label.label-warning CHF
         .col-sm-4.text-center
-          span BTC price
-          br
-          strong CHF 1'800.-
+          .fact
+            .fact-body
+              span BTC price
+              br
+              strong CHF 1'800.-
         .col-sm-4.text-center
-          span 8/12/2013
-          br
-          span 8:55am
+          .fact
+            .fact-body
+              span 8/12/2013
+              br
+              span 8:55am
 
       table.table
         tbody
@@ -47,9 +53,10 @@
             th CHF 4'503.-
             th BTC 2.501
 
-    .side.side.col-sm-4
-      .flags
-        h3.side-header Flags
-      .service
-        h3.side-header Service
+    .side.col-sm-3
+      .btn-group.btn-group-justified
+        a.btn.btn-default(href="#") Edit
+        a.btn.btn-default(href="#") Ignore
+        a.btn.btn-danger(href="#") Delete
+
       .labels

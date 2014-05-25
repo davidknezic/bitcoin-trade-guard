@@ -11,7 +11,12 @@ define([
 
     ui: {
       create: '.create',
-      items: '.labels-list'
+      items: '.labels-list',
+      toggle: '.visibility-toggle'
+    },
+
+    events: {
+      'click .visibility-toggle': 'toggleVisibility'
     },
 
     itemEvents: {
@@ -29,11 +34,26 @@ define([
         labels: this.collection
       });
 
+      this.ui.create.addClass('hidden');
+      this.ui.toggle.text('show');
+
       this.newLabelView.render();
     },
 
     onClose: function () {
       this.newLabelView.close();
+    },
+
+    toggleVisibility: function (event) {
+      event.preventDefault();
+
+      if (this.ui.create.hasClass('hidden')) {
+        this.ui.create.removeClass('hidden');
+        this.ui.toggle.text('hide');
+      } else {
+        this.ui.create.addClass('hidden');
+        this.ui.toggle.text('show');
+      }
     },
 
     clickLabel: function (eventName, view, model) {
