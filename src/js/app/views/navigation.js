@@ -21,16 +21,18 @@ define([
       'click a.notifications': 'toggleNotifications'
     },
 
-    modelEvents: {
-    },
-
-    initialize: function () {
+    initialize: function (options) {
+      this.notifications = options.notifications;
+      this.notifications.on('all', this.onUpdateNotifications, this);
     },
 
     onShow: function () {
       this.notificationPopover = new NotificationPopoverView({
-        trigger: this.ui.notifications
+        trigger: this.ui.notifications,
+        collection: this.notifications
       });
+
+      this.onUpdateNotifications();
     },
 
     onClose: function () {
@@ -54,6 +56,12 @@ define([
     showAnalysis: function () {
       channel.commands.execute('app:show:analysis');
       return false;
+    },
+
+    onUpdateNotifications: function () {
+      var hasUnread = this.notifications.hasUnread();
+
+      this.ui.notifications.toggleClass('unread', hasUnread);
     },
 
     toggleNotifications: function (event) {

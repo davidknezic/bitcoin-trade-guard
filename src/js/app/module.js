@@ -9,6 +9,7 @@ define([
     'app/collections/trades',
     'app/collections/currencies',
     'app/collections/labels',
+    'app/collections/notifications',
     'app/controllers/static',
     'app/controllers/trades',
     'app/routers/static',
@@ -24,6 +25,7 @@ define([
     Trades,
     Currencies,
     Labels,
+    Notifications,
     StaticController,
     TradesController,
     StaticRouter,
@@ -31,54 +33,45 @@ define([
   ) {
   var AppModule = Marionette.Module.extend({
     initialize: function(options, moduleName, app) {
-      this.addInitializer(function (options) {
-        channel.commands.setHandler('app:title:set', function (title) {
-          document.title = title;
-        });
+      var layout = new AppLayout({ el: 'body' }),
+          trades = new Trades(),
+          currencies = new Currencies(),
+          labels = new Labels(),
+          notifications = new Notifications();
+
+      // Register title handler
+      channel.commands.setHandler('app:title:set', function (title) {
+        document.title = title;
       });
 
-      this.addInitializer(function (options) {
-        var layout = new AppLayout({ el: 'body' });
-        layout.render();
+      // Register data getters
+      channel.reqres.setHandler('app:data:trades', function () { return trades; });
+      channel.reqres.setHandler('app:data:currencies', function () { return currencies; });
+      channel.reqres.setHandler('app:data:labels', function () { return labels; });
+      channel.reqres.setHandler('app:data:notifications', function () { return notifications; });
 
-        layout.navigation.show(new NavView());
-        layout.footer.show(new FooterView());
+      // Build layout
+      layout.render();
 
-        channel.commands.setHandler('app:content:show', function (view) {
-          layout.content.show(view);
-        });
+      layout.navigation.show(new NavView({
+        notifications: notifications
+      }));
+
+      layout.footer.show(new FooterView());
+
+      // Register content setter
+      channel.commands.setHandler('app:content:show', function (view) {
+        layout.content.show(view);
       });
 
-      this.addInitializer(function (options) {
-        var trades = new Trades(),
-            currencies = new Currencies(),
-            labels = new Labels();
+      new StaticController();
+      new TradesController();
 
-        channel.reqres.setHandler('app:data:trades', function () {
-          return trades;
-        });
+      new StaticRouter();
+      new TradesRouter();
 
-        channel.reqres.setHandler('app:data:currencies', function () {
-          return currencies;
-        });
-
-        channel.reqres.setHandler('app:data:labels', function () {
-          return labels;
-        });
-      });
-
-      this.addInitializer(function (options) {
-        new StaticController();
-        new TradesController();
-      });
-
-      this.addInitializer(function (options) {
-        new StaticRouter();
-        new TradesRouter();
-
-        Backbone.history.start({
-          pushState: true
-        });
+      Backbone.history.start({
+        pushState: true
       });
     },
 
