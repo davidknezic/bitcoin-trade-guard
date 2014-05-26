@@ -1,0 +1,19 @@
+.popover {
+  max-width: 400px;
+}
+
+.popover-content {
+}
+
+@-webkit-keyframes pulse {
+50% { color: @notifications-pulse-out-color; }
+0%, 100% { color: @notifications-pulse-in-color; }
+}
+
+a.notifications {
+  color: @gray-dark;
+}
+
+a.notifications.unread {
+  -webkit-animation: pulse 3s ease-out infinite;
+}

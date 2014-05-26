@@ -1,10 +1,17 @@
 define([
     'channel',
     'marionette',
-    'app/templates/navigation'
-  ], function (channel, Marionette, template) {
+    'app/templates/navigation',
+    'app/views/notifications/popover',
+    'bootstrap'
+  ], function (channel, Marionette, template, NotificationPopoverView) {
   return Marionette.ItemView.extend({
     template: template,
+
+    ui: {
+      'home': 'a.home',
+      'notifications': 'a.notifications'
+    },
 
     events: {
       'click a.home': 'showDashboard',
@@ -21,6 +28,13 @@ define([
     },
 
     onShow: function () {
+      this.notificationPopover = new NotificationPopoverView({
+        trigger: this.ui.notifications
+      });
+    },
+
+    onClose: function () {
+      this.notificationPopover.close();
     },
 
     serializeData: function () {
@@ -42,8 +56,8 @@ define([
       return false;
     },
 
-    toggleNotifications: function () {
-      return false;
+    toggleNotifications: function (event) {
+      event.preventDefault();
     }
   });
 });
