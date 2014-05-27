@@ -1,10 +1,61 @@
 .row
   .col-md-3
+    h3.side-header Time period
+    form.form-horizontal(role="form")
+      .form-group
+        label.col-sm-2.control-label(for="from") From
+        .col-sm-10
+          input.form-control(type="date", id="from")
+      .form-group
+        label.col-sm-2.control-label(for="to") To
+        .col-sm-10
+          input.form-control(type="date", id="to")
+
     .labels
 
   .col-md-9
-    .not-empty.panel.panel-default
-      .trades.list-group
+    .btn-toolbar(role="toolbar")
+      .btn-group(data-toggle="buttons")
+        label.btn.btn-default
+          input(type="radio", name="options")
+          span All
+        label.btn.btn-default
+          input(type="radio", name="options")
+          span Buy
+        label.btn.btn-default
+          input(type="radio", name="options")
+          span Sell
+
+      .btn-group
+        button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+          span Sort:
+          span &nbsp;
+          strong Recently executed trades
+          span &nbsp;
+          span.caret
+        ul.dropdown-menu
+          li.active
+            a(href="#") Recently executed trades
+          li
+            a(href="#") Least recently executed trades
+
+      .btn-group
+        button.btn.btn-default(type="button") Add new trade
+
+    br
+
+    .not-empty
+      .panel.panel-default
+        .panel-heading
+          input(type="checkbox")
+          span &nbsp;
+          .btn-group
+            button.btn.btn-default(type="button", disabled)
+              span Label
+              span &nbsp;
+              span.caret
+            button.btn.btn-default(type="button", disabled) Delete
+        .trades.list-group
     .empty
       .well.well-lg.text-center
         span.fa.fa-frown-o
