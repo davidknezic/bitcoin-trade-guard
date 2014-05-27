@@ -18,6 +18,7 @@ define([
       'click a.dashboard': 'showDashboard',
       'click a.trades': 'showTrades',
       'click a.analysis': 'showAnalysis',
+      'click a.settings': 'showSettings',
       'click a.notifications': 'toggleNotifications'
     },
 
@@ -43,19 +44,28 @@ define([
       return {};
     },
 
-    showDashboard: function () {
+    showDashboard: function (event) {
+      event.preventDefault();
+
       channel.commands.execute('app:show:dashboard');
-      return false;
     },
 
-    showTrades: function () {
+    showTrades: function (event) {
+      event.preventDefault();
+
       channel.commands.execute('app:show:trades');
-      return false;
     },
 
-    showAnalysis: function () {
+    showAnalysis: function (event) {
+      event.preventDefault();
+
       channel.commands.execute('app:show:analysis');
-      return false;
+    },
+
+    showSettings: function (event) {
+      event.preventDefault();
+
+      channel.commands.execute('app:show:settings');
     },
 
     onUpdateNotifications: function () {
