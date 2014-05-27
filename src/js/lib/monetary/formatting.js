@@ -9,7 +9,7 @@ define(function () {
         return "Invalid monetary!";
       }
 
-      return m.currency() + " " + m.amount();
+      return m.currency() + " " + m.amount().toFixed(2);
     }
   };
 });
