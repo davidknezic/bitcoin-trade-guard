@@ -3,5 +3,15 @@
     .labels
 
   .col-md-9
-    .panel.panel-default
+    .not-empty.panel.panel-default
       .trades.list-group
+    .empty
+      .well.well-lg.text-center
+        span.fa.fa-frown-o
+        span &nbsp;
+        span Nothing to display!
+    .loading
+      .well.well-lg.text-center
+        span.fa.fa-circle-o-notch.fa-spin
+        span &nbsp;
+        span Loading...
