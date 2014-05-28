@@ -12,8 +12,10 @@ define([
     'app/collections/notifications',
     'app/controllers/static',
     'app/controllers/trades',
+    'app/controllers/settings',
     'app/routers/static',
-    'app/routers/trades'
+    'app/routers/trades',
+    'app/routers/settings'
   ], function (
     channel,
     _,
@@ -28,8 +30,10 @@ define([
     Notifications,
     StaticController,
     TradesController,
+    SettingsController,
     StaticRouter,
-    TradesRouter
+    TradesRouter,
+    SettingsRouter
   ) {
   var AppModule = Marionette.Module.extend({
     initialize: function(options, moduleName, app) {
@@ -66,9 +70,11 @@ define([
 
       new StaticController();
       new TradesController();
+      new SettingsController();
 
       new StaticRouter();
       new TradesRouter();
+      new SettingsRouter();
 
       Backbone.history.start({
         pushState: true
