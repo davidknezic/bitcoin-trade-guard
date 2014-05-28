@@ -23,6 +23,7 @@ define([
     },
 
     edit: function (id) {
+      channel.commands.execute('app:edit:trade', id);
     }
   });
 });

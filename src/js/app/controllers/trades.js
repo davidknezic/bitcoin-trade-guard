@@ -31,6 +31,7 @@ define([
       channel.commands.setHandler('app:create:trade', this.createTrade);
       channel.commands.setHandler('app:show:trades', this.showTrades);
       channel.commands.setHandler('app:show:trade', this.showTrade);
+      channel.commands.setHandler('app:edit:trade', this.editTrade);
 
       channel.commands.setHandler('app:discard:trade', function () {
         channel.commands.execute('app:show:dashboard');
@@ -55,6 +56,7 @@ define([
       layout = new HeaderMainSideLayout();
 
       channel.commands.execute('app:title:set', 'New Trade');
+      channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', layout);
 
       layout.main.show(newTradeView);
@@ -89,6 +91,7 @@ define([
       layout = new HeaderMainLayout();
 
       channel.commands.execute('app:title:set', 'Trades');
+      channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', layout);
 
       //layout.header.show(volumeChartView);
@@ -106,9 +109,26 @@ define([
       });
 
       channel.commands.execute('app:title:set', 'Show trade');
+      channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', view);
 
       Backbone.history.navigate('/trades/' + id);
+    },
+
+    editTrade: function (id) {
+      var trades = channel.reqres.request('app:data:trades'),
+          view;
+
+      view = new NewTradeView({
+        model: trades.get(id),
+        currencies: channel.reqres.request('app:data:currencies')
+      });
+
+      channel.commands.execute('app:title:set', 'Edit trade');
+      channel.commands.execute('app:current-nav:set', 'trades');
+      channel.commands.execute('app:content:show', view);
+
+      Backbone.history.navigate('/trades/' + id + '/edit');
     }
   });
 });

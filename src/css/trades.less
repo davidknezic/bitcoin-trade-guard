@@ -53,3 +53,53 @@
     }
   }
 }
+
+.trade-meta-box {
+  border: 1px solid @panel-default-border;
+  border-top: none;
+  margin-bottom: @line-height-computed;
+
+  .trade-meta-line {
+    border: 1px solid @panel-default-border;
+    padding: @panel-body-padding;
+    margin: -1px;
+    margin-top: 0;
+    text-align: center;
+
+    &.head {
+      background-color: @brand-primary;
+      border-color: darken(@brand-primary, 20%);
+      color: contrast(@brand-primary);
+    }
+
+    &:not(:first-child) {
+      border-top: none;
+      margin-top: 1px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    strong {
+      font-size: ceil((@font-size-base * 1.25));
+      font-weight: normal;
+    }
+
+    strong.very {
+      font-size: ceil((@font-size-base * 2.6));
+      font-weight: normal;
+    }
+
+    small {
+      text-transform: uppercase;
+      font-size: @font-size-small;
+      color: @gray;
+    }
+  }
+}
+
+tr.total {
+  border-top: 2px solid @gray;
+  border-bottom: 3px double @gray;
+}

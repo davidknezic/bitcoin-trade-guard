@@ -5,58 +5,53 @@
         span.sold.fa.fa-sign-out
         span.bought.fa.fa-sign-in
         span &nbsp;
-        span.verb Sold
+        span.verb
         span &nbsp;
-        strong.amount BTC 25.50
+        strong.amount-btc
         span &nbsp;
-        small CHF 4'500.-
+        small.amount-fiat
 
 .container-content
   .row
-    .main.col-sm-9
+    .main.col-sm-4
 
-      .row
-        .col-sm-4.text-center
-          .fact
-            .fact-body
-              span.label.label-warning BTC
-              br
-              span.fa.fa-angle-down
-              br
-              span.label.label-warning CHF
-        .col-sm-4.text-center
-          .fact
-            .fact-body
-              span BTC price
-              br
-              strong CHF 1'800.-
-        .col-sm-4.text-center
-          .fact
-            .fact-body
-              span 8/12/2013
-              br
-              span 8:55am
+      .trade-meta-box
+        .trade-meta-line.head
+          p
+            span.date
+          p
+            span.time
+        .trade-meta-line
+          p
+            strong.btc-price.very
+          p
+            small BTC price
+
+      .btn-group.btn-group-justified
+        a.edit.btn.btn-default(href="#") Edit
+        a.ignore.btn.btn-default(href="#") Ignore
+        a.delete.btn.btn-danger(href="#") Delete
+
+    .col-sm-5
+
+      .heading
+        h2 Trade details
 
       table.table
         tbody
           tr
             th Amount
-            td CHF 4'500.-
-            td BTC 2.5
+            td.amount-fiat
+            td.amount-btc
           tr
             th Fee
-            td CHF 3.-
-            td BTC 0.001
+            td.fee-fiat
+            td.fee-btc
         tfoot
-          tr.warning
+          tr.total
             th Total
-            th CHF 4'503.-
-            th BTC 2.501
+            th.total-fiat
+            th.total-btc
 
     .side.col-sm-3
-      .btn-group.btn-group-justified
-        a.btn.btn-default(href="#") Edit
-        a.btn.btn-default(href="#") Ignore
-        a.btn.btn-danger(href="#") Delete
-
       .labels
