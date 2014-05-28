@@ -4,4 +4,15 @@
   border-right: none;
   border-color: @nav-border-color;
   border-radius: 0;
+
+  ul.navbar-nav li.active {
+
+    a {
+      color: darken(white, 3%);
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }

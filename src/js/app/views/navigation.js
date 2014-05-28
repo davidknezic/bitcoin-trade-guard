@@ -4,27 +4,38 @@ define([
     'app/templates/navigation',
     'app/views/notifications/popover',
     'bootstrap'
-  ], function (channel, Marionette, template, NotificationPopoverView) {
+  ], function (
+    channel,
+    Marionette,
+    template,
+    NotificationPopoverView
+  ) {
   return Marionette.ItemView.extend({
     template: template,
 
     ui: {
       'home': 'a.home',
+      'dashboard': 'a.dashboard',
+      'trades': 'a.trades',
+      'analysis': 'a.analysis',
+      'settings': 'a.settings',
       'notifications': 'a.notifications'
     },
 
     events: {
-      'click a.home': 'showDashboard',
-      'click a.dashboard': 'showDashboard',
-      'click a.trades': 'showTrades',
-      'click a.analysis': 'showAnalysis',
-      'click a.settings': 'showSettings',
-      'click a.notifications': 'toggleNotifications'
+      'click @ui.home': 'showDashboard',
+      'click @ui.dashboard': 'showDashboard',
+      'click @ui.trades': 'showTrades',
+      'click @ui.analysis': 'showAnalysis',
+      'click @ui.settings': 'showSettings',
+      'click @ui.notifications': 'toggleNotifications'
     },
 
     initialize: function (options) {
       this.notifications = options.notifications;
       this.notifications.on('all', this.onUpdateNotifications, this);
+
+      channel.commands.setHandler('app:current-nav:set', this.setCurrentNav.bind(this));
     },
 
     onShow: function () {
@@ -40,8 +51,16 @@ define([
       this.notificationPopover.close();
     },
 
-    serializeData: function () {
-      return {};
+    setCurrentNav: function (name) {
+      var map = [
+        { $e: this.ui.dashboard, name: 'dashboard' },
+        { $e: this.ui.trades,    name: 'trades' },
+        { $e: this.ui.settings,  name: 'settings' }
+      ];
+
+      _.each(map, function (item) {
+        item.$e.parent().toggleClass('active', name === item.name);
+      });
     },
 
     showDashboard: function (event) {
