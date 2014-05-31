@@ -1,0 +1,34 @@
+p.lead.
+  To get a new api key, log in to Bitstamp, go to
+  Account » Security » API Access and generate a new key.
+
+p.
+  For security reasons only select the following three permissions:
+
+ul
+  li Account balance
+  li User transactions
+  li Open orders
+
+br
+
+.panel.panel-default
+  .panel-heading Bitstamp API Access
+  .panel-body
+    .alert.alert-danger
+      strong Unsuccessful!
+      span &nbsp;
+      span Please check your data and try again.
+
+    form.form-horizontal(role="form")
+      .form-group
+        label.col-sm-2.control-label API key
+        .col-sm-10
+          input.key.form-control(type="text", placeholder="API key")
+      .form-group
+        label.col-sm-2.control-label API secret
+        .col-sm-10
+          input.secret.form-control(type="text", placeholder="API secret")
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type="submit", data-loading-text="Authenticating...") Authenticate and save
