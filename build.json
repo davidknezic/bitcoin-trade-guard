@@ -4,7 +4,8 @@
   "mainConfigFile": "./src/js/main.js",
 
   "paths": {
-    "app/templates": "../../build/js/app/templates"
+    "app/templates": "../../build/js/app/templates",
+    "bitstamp/templates": "../../build/js/bitstamp/templates"
   },
 
   "optimize": "uglify",
