@@ -4,6 +4,7 @@ define([
   return Backbone.Model.extend({
     defaults: {
       service: null,
+      title: null,
       data: null,
       latestExecutionOn: null,
       hasLatestExecutionFailed: null,
