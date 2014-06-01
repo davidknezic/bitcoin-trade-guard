@@ -7,7 +7,12 @@ define([
 
     ui: {
       cancel: 'a.cancel',
+      delete: 'a.delete',
       content: '.content'
+    },
+
+    events: {
+      'click @ui.delete': 'deleteSync'
     },
 
     triggers: {
@@ -31,6 +36,10 @@ define([
 
     saveSync: function (sync) {
       this.trigger('save', sync);
+    },
+
+    deleteSync: function () {
+      this.trigger('delete', this.model);
     }
   });
 });

@@ -118,6 +118,11 @@ define([
         this.sync();
       }, this);
 
+      editSyncView.on('delete', function (sync) {
+        this.syncs.remove(sync);
+        this.sync();
+      }, this);
+
       channel.commands.execute('app:title:set', 'Settings » Edit Synchronization');
       channel.commands.execute('app:current-nav:set', 'settings');
       channel.commands.execute('app:content:show', layout);
