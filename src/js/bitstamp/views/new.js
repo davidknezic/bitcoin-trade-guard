@@ -8,6 +8,7 @@ define([
 
     ui: {
       title: '.title',
+      clientId: '.client-id',
       key: '.key',
       secret: '.secret',
       submit: 'button[type="submit"]'
@@ -27,6 +28,8 @@ define([
     },
 
     setLoading: function (isLoading) {
+      this.ui.title.prop('disabled', isLoading);
+      this.ui.clientId.prop('disabled', isLoading);
       this.ui.key.prop('disabled', isLoading);
       this.ui.secret.prop('disabled', isLoading);
       this.ui.submit.button(isLoading ? 'loading' : 'reset');
@@ -37,6 +40,7 @@ define([
         service: 'bitstamp',
         title: this.ui.title.val(),
         data: {
+          clientId: this.ui.clientId.val(),
           key: this.ui.key.val(),
           secret: this.ui.secret.val()
         }
