@@ -118,6 +118,9 @@ define([
         this.sync();
       }, this);
 
+      editSyncView.on('trigger', function (sync) {
+      }, this);
+
       editSyncView.on('delete', function (sync) {
         this.syncs.remove(sync);
         this.sync();
