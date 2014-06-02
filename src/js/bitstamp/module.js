@@ -1,10 +1,16 @@
 define([
     'channel',
     'marionette',
-    'app/models/service',
+    'bitstamp/controllers/sync',
     'bitstamp/views/new',
     'bitstamp/views/edit'
-  ], function (channel, Marionette, Service, NewView, EditView) {
+  ], function (
+    channel,
+    Marionette,
+    SyncController,
+    NewView,
+    EditView
+  ) {
   return Marionette.Module.extend({
     initialize: function (options, moduleName, app) {
     },
@@ -23,6 +29,10 @@ define([
 
       channel.reqres.setHandler('bitstamp:view:edit', function (sync) {
         return new EditView();
+      });
+
+      channel.reqres.setHandler('bitstamp:sync', function (options) {
+        return new SyncController(options);
       });
     },
 
