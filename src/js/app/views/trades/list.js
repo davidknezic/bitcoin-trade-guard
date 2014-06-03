@@ -23,6 +23,7 @@ define([
     itemViewContainer: ".trades",
 
     ui: {
+      newTrade: 'button.new-trade',
       labels: '.labels',
       notEmpty: '.not-empty',
       empty: '.empty',
@@ -30,7 +31,7 @@ define([
     },
 
     events: {
-      'click button.add-trade': 'addTrade'
+      'click @ui.newTrade': 'addTrade',
     },
 
     itemEvents: {
@@ -92,13 +93,12 @@ define([
     },
 
     addTrade: function (event) {
-      event.preventDefault();
-
-      channel.commands.execute('app:show:add-trade');
+      this.trigger('add:trade');
     },
 
     showTrade: function (eventName, view, model) {
-      channel.commands.execute('app:show:trade', model.cid);
+      this.trigger('show:trade', model);
+      //channel.commands.execute('app:show:trade', model.cid);
     },
 
     setState: function (state) {

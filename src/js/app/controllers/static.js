@@ -11,7 +11,7 @@ define([
     initialize: function (options) {
       this.trades = channel.reqres.request('app:data:trades');
 
-      channel.commands.setHandler('app:show:dashboard', this.dashboard.bind(this));
+      channel.commands.setHandler('app:show:dashboard', this.dashboard, this);
     },
 
     onClose: function () {
@@ -21,6 +21,10 @@ define([
       var view = new DashboardView({
         trades: this.trades
       });
+
+      view.on('show:trade', function (trade) {
+        channel.commands.execute('app:show:trade', trade);
+      }, this);
 
       channel.commands.execute('app:title:set', 'Dashboard');
       channel.commands.execute('app:current-nav:set', 'dashboard');

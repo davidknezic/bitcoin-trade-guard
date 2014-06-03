@@ -15,10 +15,10 @@ define([
   ) {
   return Marionette.Controller.extend({
     initialize: function (options) {
-      channel.commands.setHandler('app:show:settings', this.settings.bind(this));
-      channel.commands.setHandler('app:show:settings:syncs', this.sync.bind(this));
-      channel.commands.setHandler('app:show:settings:syncs:new', this.newSync.bind(this));
-      channel.commands.setHandler('app:show:settings:syncs:edit', this.editSync.bind(this));
+      channel.commands.setHandler('app:show:settings', this.settings, this);
+      channel.commands.setHandler('app:show:settings:syncs', this.sync, this);
+      channel.commands.setHandler('app:show:settings:syncs:new', this.newSync, this);
+      channel.commands.setHandler('app:show:settings:syncs:edit', this.editSync, this);
 
       this.syncs = channel.reqres.request('app:data:syncs');
     },

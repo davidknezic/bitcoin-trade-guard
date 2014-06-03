@@ -31,6 +31,10 @@ define([
         trades: this.trades
       });
 
+      latestTradesView.on('show:trade', function (trade) {
+        this.trigger('show:trade', trade);
+      }, this);
+
       summaryView = new SummaryView({
         model: summaryModel
       });

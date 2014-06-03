@@ -10,12 +10,18 @@ define([
       'trades/:id/edit': 'edit'
     },
 
+    initialize: function (options) {
+      this.trades = channel.reqres.request('app:data:trades');
+    },
+
     list: function () {
       channel.commands.execute('app:show:trades');
     },
 
     show: function (id) {
-      channel.commands.execute('app:show:trade', id);
+      var trade = this.trades.get(id);
+
+      channel.commands.execute('app:show:trade', trade);
     },
 
     newTrade: function () {
@@ -23,7 +29,9 @@ define([
     },
 
     edit: function (id) {
-      channel.commands.execute('app:edit:trade', id);
+      var trade = this.trades.get(id);
+
+      channel.commands.execute('app:edit:trade', trade);
     }
   });
 });

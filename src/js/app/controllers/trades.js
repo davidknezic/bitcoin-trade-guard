@@ -27,15 +27,15 @@ define([
     initialize: function (options) {
       this.trades = channel.reqres.request('app:data:trades');
 
-      channel.commands.setHandler('app:show:add-trade', this.newTrade);
-      channel.commands.setHandler('app:create:trade', this.createTrade);
-      channel.commands.setHandler('app:show:trades', this.showTrades);
-      channel.commands.setHandler('app:show:trade', this.showTrade);
-      channel.commands.setHandler('app:edit:trade', this.editTrade);
+      channel.commands.setHandler('app:show:add-trade', this.newTrade, this);
+      channel.commands.setHandler('app:create:trade', this.createTrade, this);
+      channel.commands.setHandler('app:show:trades', this.showTrades, this);
+      channel.commands.setHandler('app:show:trade', this.showTrade, this);
+      channel.commands.setHandler('app:edit:trade', this.editTrade, this);
 
       channel.commands.setHandler('app:discard:trade', function () {
         channel.commands.execute('app:show:dashboard');
-      });
+      }, this);
     },
 
     onClose: function () {
@@ -88,6 +88,14 @@ define([
         labels: channel.reqres.request('app:data:labels')
       });
 
+      tradesView.on('add:trade', function () {
+        this.newTrade();
+      }, this);
+
+      tradesView.on('show:trade', function (trade) {
+        this.showTrade(trade);
+      }, this);
+
       layout = new HeaderMainLayout();
 
       channel.commands.execute('app:title:set', 'Trades');
@@ -100,27 +108,21 @@ define([
       Backbone.history.navigate('/trades');
     },
 
-    showTrade: function (id) {
-      var trades = channel.reqres.request('app:data:trades'),
-          view;
-
-      view = new ShowView({
-        model: trades.get(id)
+    showTrade: function (trade) {
+      var view = new ShowView({
+        model: trade
       });
 
       channel.commands.execute('app:title:set', 'Show trade');
       channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', view);
 
-      Backbone.history.navigate('/trades/' + id);
+      Backbone.history.navigate('/trades/' + trade.cid);
     },
 
-    editTrade: function (id) {
-      var trades = channel.reqres.request('app:data:trades'),
-          view;
-
-      view = new NewTradeView({
-        model: trades.get(id),
+    editTrade: function (trade) {
+      var view = new NewTradeView({
+        model: trade,
         currencies: channel.reqres.request('app:data:currencies')
       });
 
@@ -128,7 +130,7 @@ define([
       channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', view);
 
-      Backbone.history.navigate('/trades/' + id + '/edit');
+      Backbone.history.navigate('/trades/' + trade.cid + '/edit');
     }
   });
 });

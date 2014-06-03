@@ -48,7 +48,7 @@ define([
     },
 
     showTrade: function (eventName, view, model) {
-      channel.commands.execute('app:show:trade', model.cid);
+      this.trigger('show:trade', model);
     },
 
     addTrade: function () {
