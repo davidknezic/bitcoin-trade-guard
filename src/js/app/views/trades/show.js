@@ -74,15 +74,19 @@ define([
     edit: function (event) {
       event.preventDefault();
 
-      channel.commands.execute('app:edit:trade', this.model.cid);
+      this.trigger('edit');
     },
 
     ignore: function (event) {
       event.preventDefault();
+
+      this.trigger('ignore');
     },
 
     delete: function (event) {
       event.preventDefault();
+
+      this.trigger('delete');
     }
   });
 });

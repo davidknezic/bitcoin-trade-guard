@@ -117,6 +117,19 @@ define([
         model: trade
       });
 
+      view.on('delete', function () {
+        this.trades.remove(trade);
+        this.showTrades();
+      }, this);
+
+      view.on('edit', function () {
+        this.editTrade(trade);
+      }, this);
+
+      view.on('ignore', function () {
+        trade.set('isIgnored', true);
+      }, this);
+
       channel.commands.execute('app:title:set', 'Show trade');
       channel.commands.execute('app:current-nav:set', 'trades');
       channel.commands.execute('app:content:show', view);
