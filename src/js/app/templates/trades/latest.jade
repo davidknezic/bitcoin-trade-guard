@@ -4,10 +4,16 @@
       span.fa.fa-plus-square-o.visible-xs-inline
       span.hidden-sm.hidden-md.hidden-lg &nbsp;
       span.hidden-xs Add trade
-    button.show-all-trades.btn.btn-default
+    button.show-all-trades.not-empty.btn.btn-default
       span.fa.fa-ellipsis-h.visible-xs-inline
       span.hidden-sm.hidden-md.hidden-lg &nbsp;
       span.hidden-xs Show all trades
   h2 Your latest trades
 
-div.latest-trades.list-group
+div.latest-trades.not-empty.list-group
+
+.empty
+  .well.well-lg.text-center
+    span.fa.fa-frown-o
+    span &nbsp;
+    span Nothing to display!

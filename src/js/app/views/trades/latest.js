@@ -16,9 +16,16 @@ define([
     itemView: LatestTradesItemView,
     itemViewContainer: ".latest-trades",
 
+    ui: {
+      empty: '.empty',
+      notEmpty: '.not-empty',
+      addTrade: 'button.add-trade',
+      showAllTrades: 'button.show-all-trades'
+    },
+
     events: {
-      'click button.add-trade': 'addTrade',
-      'click button.show-all-trades': 'showAllTrades'
+      'click @ui.addTrade': 'addTrade',
+      'click @ui.showAllTrades': 'showAllTrades'
     },
 
     itemEvents: {
@@ -28,7 +35,9 @@ define([
     initialize: function (options) {
       this.trades = options.trades;
       this.collection = new Backbone.Collection();
+    },
 
+    onShow: function () {
       this.trades.on("all", this.onTradesUpdate, this);
       this.onTradesUpdate();
     },
@@ -38,6 +47,8 @@ define([
     },
 
     onTradesUpdate: function () {
+      this.setEmptyState(this.trades.length <= 0);
+
       var latest = _.chain(this.trades.models)
         .sortBy(function (trade) { return trade.attributes.executionOn; })
         .reverse()
@@ -45,6 +56,11 @@ define([
         .value();
 
       this.collection.reset(latest);
+    },
+
+    setEmptyState: function (isEmpty) {
+      this.ui.empty.toggle(isEmpty);
+      this.ui.notEmpty.toggle(!isEmpty);
     },
 
     showTrade: function (eventName, view, model) {
