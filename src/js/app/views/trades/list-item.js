@@ -9,7 +9,7 @@ define([
 
     tagName: "a",
     className: "trades-item list-group-item",
-    
+
     ui: {
       self: '',
       checkbox: '.checkbox',
@@ -66,12 +66,14 @@ define([
     open: function (event) {
       event.preventDefault();
 
-      this.trigger('open', this.model);
+      this.trigger('open');
     },
 
     select: function (event) {
       var isSelected = this.ui.checkbox.is(':checked');
       this.toggleSelected(!isSelected);
+
+      this.trigger('change:selection', !isSelected);
     },
 
     toggleSelected: function (isSelected) {

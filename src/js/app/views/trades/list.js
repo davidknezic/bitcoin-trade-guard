@@ -27,7 +27,10 @@ define([
       labels: '.labels',
       notEmpty: '.not-empty',
       empty: '.empty',
-      loading: '.loading'
+      loading: '.loading',
+      chekboxAll: '.checkbox-all',
+      labelSelected: '.label-selected',
+      deleteSelected: '.delete-selected'
     },
 
     events: {
@@ -35,11 +38,17 @@ define([
     },
 
     itemEvents: {
-      'open': 'showTrade'
+      'open': 'showTrade',
+      'change:selection': 'changeSelection'
     },
 
     initialize: function (options) {
       this.trades = options.collection;
+
+      this.selectedTrades = new TradesCollection();
+      this.selectedTrades.reset();
+      this.selectedTrades.on('all', this.onSelectedTradesUpdated, this);
+
       this.collection = new TradesCollection();
       this.collection.reset(); // temporary
 
@@ -62,6 +71,8 @@ define([
       this.collection.on('all', this.onCollectionUpdate, this);
 
       this.refilter();
+
+      this.onSelectedTradesUpdated();
     },
 
     onCollectionUpdate: function (eventName) {
@@ -74,6 +85,15 @@ define([
       } else {
         return this.setState('not-empty');
       }
+    },
+
+    toggleTradeActions: function (isEnabled) {
+      this.ui.labelSelected.prop('disabled', !isEnabled);
+      this.ui.deleteSelected.prop('disabled', !isEnabled);
+    },
+
+    onSelectedTradesUpdated: function () {
+      this.toggleTradeActions(this.selectedTrades.length > 0);
     },
 
     refilter: function () {
@@ -89,6 +109,7 @@ define([
         });
       }
 
+      this.selectedTrades.reset();
       this.collection.reset(filtered);
     },
 
@@ -96,9 +117,16 @@ define([
       this.trigger('add:trade');
     },
 
-    showTrade: function (eventName, view, model) {
-      this.trigger('show:trade', model);
-      //channel.commands.execute('app:show:trade', model.cid);
+    showTrade: function (eventName, view) {
+      this.trigger('show:trade', view.model);
+    },
+
+    changeSelection: function (eventName, view, isSelected) {
+      if (isSelected) {
+        this.selectedTrades.add(view.model);
+      } else {
+        this.selectedTrades.remove(view.model);
+      }
     },
 
     setState: function (state) {

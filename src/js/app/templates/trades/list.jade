@@ -47,14 +47,14 @@
     .not-empty
       .panel.panel-default
         .panel-heading
-          input(type="checkbox")
+          input.checkbox-all(type="checkbox")
           span &nbsp;
           .btn-group
-            button.btn.btn-default(type="button", disabled)
+            button.label-selected.btn.btn-default(type="button")
               span Label
               span &nbsp;
               span.caret
-            button.btn.btn-default(type="button", disabled) Delete
+            button.delete-selected.btn.btn-default(type="button") Delete
         .trades.list-group
     .empty
       .well.well-lg.text-center
