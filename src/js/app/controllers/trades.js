@@ -96,6 +96,10 @@ define([
         this.showTrade(trade);
       }, this);
 
+      tradesView.on('delete:trades', function (trades) {
+        this.trades.remove(trades);
+      }, this);
+
       layout = new HeaderMainLayout();
 
       channel.commands.execute('app:title:set', 'Trades');

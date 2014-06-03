@@ -35,6 +35,7 @@ define([
 
     events: {
       'click @ui.newTrade': 'addTrade',
+      'click @ui.deleteSelected': 'deleteSelected'
     },
 
     itemEvents: {
@@ -57,6 +58,7 @@ define([
       this.selectedLabels.reset(); // temporary
 
       this.selectedLabels.on('all', this.refilter, this);
+      this.trades.on('all', this.refilter, this);
     },
 
     onShow: function () {
@@ -127,6 +129,10 @@ define([
       } else {
         this.selectedTrades.remove(view.model);
       }
+    },
+
+    deleteSelected: function () {
+      this.trigger('delete:trades', this.selectedTrades.models);
     },
 
     setState: function (state) {
