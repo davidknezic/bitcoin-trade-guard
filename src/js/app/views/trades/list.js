@@ -48,7 +48,6 @@ define([
 
       this.selectedTrades = new TradesCollection();
       this.selectedTrades.reset();
-      this.selectedTrades.on('all', this.onSelectedTradesUpdated, this);
 
       this.collection = new TradesCollection();
       this.collection.reset(); // temporary
@@ -56,9 +55,6 @@ define([
       this.labels = options.labels;
       this.selectedLabels = new LabelsCollection();
       this.selectedLabels.reset(); // temporary
-
-      this.selectedLabels.on('all', this.refilter, this);
-      this.trades.on('all', this.refilter, this);
     },
 
     onShow: function () {
@@ -70,11 +66,21 @@ define([
 
       this.labelSelectView.render();
 
+      this.selectedTrades.on('all', this.onSelectedTradesUpdated, this);
+      this.selectedLabels.on('all', this.refilter, this);
+      this.trades.on('all', this.refilter, this);
       this.collection.on('all', this.onCollectionUpdate, this);
 
       this.refilter();
 
       this.onSelectedTradesUpdated();
+    },
+
+    onClose: function () {
+      this.selectedTrades.off(null, null, this);
+      this.selectedLabels.off(null, null, this);
+      this.trades.off(null, null, this);
+      this.collection.off(null, null, this);
     },
 
     onCollectionUpdate: function (eventName) {
