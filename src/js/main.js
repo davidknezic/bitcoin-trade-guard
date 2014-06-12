@@ -17,8 +17,8 @@ require.config({
     'moment': '../bower_components/moment/min/moment-with-langs',
     'd3': '../bower_components/d3/d3',
     'crypto': '../bower_components/cryptojslib/rollups/hmac-sha256',
+    'monetary': '../bower_components/monetary/dist/monetary.full',
 
-    'monetary': 'lib/monetary',
     'validators': 'lib/validators'
   },
 
