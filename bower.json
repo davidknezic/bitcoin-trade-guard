@@ -28,6 +28,7 @@
     "jquery": "~2.1.1",
     "marionette": "~1.8.6",
     "moment": "~2.6.0",
+    "monetary": "davidknezic/monetary",
     "requirejs": "~2.1.11",
     "underscore": "~1.6.0",
     "underscore.string": "~2.3.3"
