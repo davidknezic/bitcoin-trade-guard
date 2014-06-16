@@ -78,13 +78,13 @@ define([
         this.layout.content.show(view);
       }, this);
 
-      new StaticController();
-      new TradesController();
-      new SettingsController();
+      this.staticController = new StaticController();
+      this.tradesController = new TradesController();
+      this.settingsController = new SettingsController();
 
-      new StaticRouter();
-      new TradesRouter();
-      new SettingsRouter();
+      this.staticRouter = new StaticRouter();
+      this.tradesRouter = new TradesRouter();
+      this.settingsRouter = new SettingsRouter();
 
       Backbone.history.start({
         pushState: true
@@ -102,6 +102,14 @@ define([
       channel.reqres.removeHandler('app:data:services');
 
       channel.commands.removeHandler('app:content:show');
+
+      this.staticRouter.close();
+      this.tradesRouter.close();
+      this.settingsRouter.close();
+
+      this.staticController.close();
+      this.tradesController.close();
+      this.settingsController.close();
     },
   });
 
