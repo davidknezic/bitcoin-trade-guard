@@ -18,6 +18,7 @@ require.config({
     'd3': '../bower_components/d3/d3',
     'crypto': '../bower_components/cryptojslib/rollups/hmac-sha256',
     'monetary': '../bower_components/monetary/dist/monetary.full',
+    'parse': '../bower_components/parse-js-sdk/lib/parse',
 
     'validators': 'lib/validators'
   },
@@ -38,10 +39,18 @@ require.config({
     },
     'crypto': {
       exports: 'CryptoJS'
+    },
+    parse: {
+      deps: ['jquery', 'underscore'],
+      exports: 'Parse'
     }
   }
 });
 
-require(['app'], function (app) {
+require(['parse', 'app'], function (Parse, app) {
+  Parse.initialize(
+    'TTkLNPMw8KOMzJUcjumW2aOb340MFbWZhfphVr0w',
+    'l1AEye0vXbDUFQeoVnqT97hVGE08tzeaPqbvhzI5');
+
   app.start();
 });
