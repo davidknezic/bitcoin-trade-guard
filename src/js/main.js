@@ -14,7 +14,7 @@ require.config({
     'marionette': '../bower_components/marionette/lib/core/amd/backbone.marionette',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
     'jade': '../bower_components/jade/runtime',
-    'moment': '../bower_components/moment/min/moment-with-langs',
+    'moment': '../bower_components/moment/min/moment-with-locales',
     'd3': '../bower_components/d3/d3',
     'crypto': '../bower_components/cryptojslib/rollups/hmac-sha256',
     'monetary': '../bower_components/monetary/dist/monetary.full',
