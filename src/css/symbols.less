@@ -1,0 +1,28 @@
+@symbols-var-logo: "\61";
+@symbols-family-name: "Symbols";
+@symbols-font-path: "../fonts";
+@symbols-css-prefix: sy;
+@symbols-version: "1.0.0";
+
+@font-face {
+  font-family: @symbols-family-name;
+  src: ~"url('@{symbols-font-path}/symbols.eot?v=@{symbols-version}')";
+  src: ~"url('@{symbols-font-path}/symbols.eot?#iefix&v=@{symbols-version}') format('embedded-opentype')",
+    ~"url('@{symbols-font-path}/symbols.woff?v=@{symbols-version}') format('woff')",
+    ~"url('@{symbols-font-path}/symbols.ttf?v=@{symbols-version}') format('truetype')",
+    ~"url('@{symbols-font-path}/symbols.svg?v=@{symbols-version}#symbols') format('svg')";
+  font-weight: normal;
+  font-style: normal;
+}
+
+.@{symbols-css-prefix} {
+  display: inline-block;
+  font-family: @symbols-family-name;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.@{symbols-css-prefix}-logo:before { content: @symbols-var-logo; }
