@@ -1,0 +1,13 @@
+@import "normalize";
+@import "foundation/settings";
+
+$include-html-classes: false;
+$include-html-type-classes: true;
+$include-print-styles: false;
+
+@import "foundation/components/global";
+@import "foundation/components/type";
+@import "foundation/components/grid";
+@import "foundation/components/block-grid";
+
+@import "intro";

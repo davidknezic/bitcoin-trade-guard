@@ -121,6 +121,23 @@ function createServeLessFiles(options) {
   };
 };
 
+function createServeSassFiles(options) {
+  var sass = require('node-sass');
+  var path = require('path');
+
+  var base = path.resolve(options.base);
+
+  return sass.middleware({
+    src: base,
+    debug: false,
+    response: true,
+    force: true,
+    includePaths: [
+      path.resolve(base + '/bower_components/foundation/scss')
+    ]
+  });
+};
+
 function createServeIndexJade(options) {
   var path = require('path');
   var fs = require('fs');
@@ -184,12 +201,8 @@ module.exports = function (grunt) {
       jadeRuntimeName: 'jade'
     }));
 
-    app.use(createServeLessFiles({
-      base: options.base,
-      files: [
-        '/css/app.less'
-      ],
-      compress: false
+    app.use(createServeSassFiles({
+      base: options.base
     }));
 
     app.use(createServeIndexJade({

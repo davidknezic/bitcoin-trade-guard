@@ -61,6 +61,14 @@ module.exports = function (grunt) {
       }
     },
 
+    sass: {
+      compile: {
+        files: {
+          './build/css/app.css': './src/css/app.sass'
+        }
+      }
+    },
+
     copy: {
       build: {
         files: [{
@@ -113,7 +121,7 @@ module.exports = function (grunt) {
     'jade:templates',
     'requirejs:compile',
     'jade:static',
-    'less:compile',
+    'sass:compile',
     'copy:build',
     'clean:templates'
   ]);
