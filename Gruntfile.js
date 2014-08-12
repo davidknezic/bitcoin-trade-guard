@@ -63,8 +63,13 @@ module.exports = function (grunt) {
 
     sass: {
       compile: {
+        options: {
+          includePaths: [
+            './src/bower_components/foundation/scss'
+          ]
+        },
         files: {
-          './build/css/app.css': './src/css/app.sass'
+          './build/css/app.css': './src/css/app.scss'
         }
       }
     },
@@ -109,6 +114,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.loadTasks("./tasks");
 
