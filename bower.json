@@ -46,5 +46,8 @@
     "bower_components",
     "src/bower_components",
     "test"
-  ]
+  ],
+  "resolutions": {
+    "backbone": "~1.1.2"
+  }
 }
