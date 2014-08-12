@@ -6,6 +6,7 @@ define([
     'app/views/layouts/app',
     'app/views/navigation',
     'app/views/footer',
+    'app/views/intro',
     'app/collections/trades',
     'app/collections/currencies',
     'app/collections/labels',
@@ -26,6 +27,7 @@ define([
     AppLayout,
     NavView,
     FooterView,
+    IntroView,
     Trades,
     Currencies,
     Labels,
@@ -65,7 +67,7 @@ define([
       channel.reqres.setHandler('app:data:services', function () { return this.services; }, this);
 
       // Build layout
-      this.layout.render();
+      //this.layout.render();
 
       this.layout.navigation.show(new NavView({
         notifications: this.notifications
@@ -86,9 +88,14 @@ define([
       this.tradesRouter = new TradesRouter();
       this.settingsRouter = new SettingsRouter();
 
-      Backbone.history.start({
-        pushState: true
+      //Backbone.history.start({
+      //  pushState: true
+      //});
+
+      var i = new IntroView({
+        el: 'body'
       });
+      i.render();
     },
 
     onStop: function(options) {

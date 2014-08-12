@@ -19,6 +19,10 @@ require.config({
     'crypto': '../bower_components/cryptojslib/rollups/hmac-sha256',
     'monetary': '../bower_components/monetary/dist/monetary.full',
     'parse': '../bower_components/parse-js-sdk/lib/parse',
+    'keen': '../bower_components/keen-js/dist/keen',
+    'uuid': '../bower_components/node-uuid/uuid',
+    'localforage': '../bower_components/localforage/dist/localforage.nopromises',
+    'ua-parser-js': '../bower_components/ua-parser-js/src/ua-parser',
 
     'validators': 'lib/validators'
   },
@@ -40,17 +44,16 @@ require.config({
     'crypto': {
       exports: 'CryptoJS'
     },
-    parse: {
+    'parse': {
       deps: ['jquery', 'underscore'],
       exports: 'Parse'
+    },
+    'uuid': {
+      exports: 'uuid'
     }
   }
 });
 
-require(['parse', 'app'], function (Parse, app) {
-  Parse.initialize(
-    'TTkLNPMw8KOMzJUcjumW2aOb340MFbWZhfphVr0w',
-    'l1AEye0vXbDUFQeoVnqT97hVGE08tzeaPqbvhzI5');
-
+require(['app'], function (app) {
   app.start();
 });
