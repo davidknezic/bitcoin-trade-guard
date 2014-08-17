@@ -29,8 +29,9 @@ define([
   });*/
 
   app.module("Core", CoreModule);
-  app.module("App", AppModule);
-  app.module("Bitstamp", BitstampModule);
+  app.module("Intro", IntroModule);
+  //app.module("App", AppModule);
+  //app.module("Bitstamp", BitstampModule);
 
   return app;
 });
