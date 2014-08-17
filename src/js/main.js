@@ -21,7 +21,7 @@ require.config({
     'parse': '../bower_components/parse-js-sdk/lib/parse',
     'keen': '../bower_components/keen-js/dist/keen',
     'uuid': '../bower_components/node-uuid/uuid',
-    'localforage': '../bower_components/localforage/dist/localforage.nopromises',
+    //'localforage': '../bower_components/localforage/dist/localforage',
     'ua-parser-js': '../bower_components/ua-parser-js/src/ua-parser',
 
     'validators': 'lib/validators'

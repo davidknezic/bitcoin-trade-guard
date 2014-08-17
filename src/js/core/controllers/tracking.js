@@ -3,15 +3,15 @@ define([
     'marionette',
     'keen',
     'uuid',
-    'ua-parser-js',
-    'localforage'
+    'ua-parser-js'
+    //'localforage'
   ], function (
     channel,
     Marionette,
     Keen,
     uuid,
-    UAParser,
-    localforage
+    UAParser
+    //localforage
   ) {
   return Marionette.Controller.extend({
     initialize: function (options) {
