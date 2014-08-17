@@ -1,0 +1,33 @@
+@import "bourbon";
+
+$icons-name: "Icons";
+$icons-prefix: "icon";
+$icons-path: "../fonts";
+$icons-version: "1.0.0";
+
+$icon-logo: "\61";
+
+@include font-face($icons-name, #{$icons-path}/symbols);
+
+@mixin icon($position: before, $icon: false, $styles: true) {
+  @if $position == both {
+    $position: 'before, &:after';
+  }
+
+  &:#{$position} {
+    @if $icon {
+      content: $icon;
+    }
+
+    @if $styles {
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-family: 'Icons';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @content;
+  }
+}

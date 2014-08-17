@@ -1,0 +1,169 @@
+$color-darker: #555;
+
+.intro-product {
+  @include padding(50px null 50px null);
+
+  .container {
+    @include margin(null 25px null 25px);
+  }
+
+  header {
+    @include margin(null null 50px null);
+    text-align: center;
+  }
+
+  .feature-list {
+    text-align: center;
+
+    @include block-grid(
+      $per-row: 1,
+      $spacing: $block-grid-default-spacing,
+      $base-style: true
+    );
+
+    h3:before {
+      @extend .fa;
+      color: $color-darker;
+      display: block;
+      font-size: 4rem;
+      border: 2px solid $color-darker;
+      border-radius: 50%;
+      margin: 20px auto;
+      width: 8rem;
+      height: 8rem;
+      line-height: 8rem;
+    }
+
+    .gather h3:before {
+      @extend .fa-database;
+    }
+
+    .analyze h3:before {
+      @extend .fa-bar-chart-o;
+    }
+
+    .sync h3:before {
+      @extend .fa-cloud-download;
+    }
+
+    .free h3:before {
+      @extend .fa-thumbs-o-up;
+    }
+  }
+}
+
+.intro-subscribe {
+  background-color: #008BBA;
+  color: white;
+
+  a {
+    color: darken(white, 10%);
+    text-decoration: underline;
+  }
+
+  @include padding(80px null 80px null);
+
+  .container {
+    @include margin(null 25px null 25px);
+  }
+
+  header {
+    @include margin(null null 50px null);
+    text-align: center;
+
+    h2 {
+      color: white;
+      margin-bottom: 30px;
+    }
+  }
+
+  .unsuccessful, .registered {
+    text-align: center;
+
+    &:before {
+      @extend .fa;
+
+      border: 2px solid white;
+      border-radius: 50%;
+
+      display: block;
+      font-size: 3rem;
+      margin: 20px auto;
+
+      width: 6rem;
+      height: 6rem;
+      line-height: 6rem;
+    }
+  }
+
+  .unsuccessful:before {
+    @extend .fa-frown-o;
+  }
+
+  .registered:before {
+    @extend .fa-child;
+  }
+
+  .registration {
+    .email {
+      width: 60%;
+      display: inline-block;
+      padding-right: 10px;
+
+      input {
+        @include padding(5px 10px 5px 10px);
+
+        width: 100%;
+        height: 50px;
+
+        border: 1px solid white;
+        border-radius: 5px;
+        background-color: transparent;
+        -webkit-appearance: none;
+
+        @include placeholder {
+          color: darken(white, 10%);
+        }
+      }
+    }
+
+    .subscribe {
+      width: 40%;
+      display: inline-block;
+
+      button {
+        width: 100%;
+        height: 50px;
+
+        color: #008BBA;
+        border: 1px solid white;
+
+        @include padding(0px 10px 0px 10px);
+
+        line-height: 50px;
+        text-align: center;
+
+        border-radius: 5px;
+        background-color: white;
+      }
+    }
+
+    &.loading {
+
+      .subscribe button {
+        font-size: 0;
+        color: transparent;
+
+        &:before {
+          font-size: 1rem;
+          color: black;
+          line-height: 50px;
+
+          @extend .fa;
+          @extend .fa-spin;
+          @extend .fa-circle-o-notch;
+        }
+      }
+    }
+  }
+}

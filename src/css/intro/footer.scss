@@ -1,0 +1,66 @@
+$bg-darker: #154E62;
+$bg-lighter: #155C74;
+
+.intro-footer {
+  @include linear-gradient(to top, $bg-lighter, $bg-darker, $fallback: $bg-darker);
+  @include padding(50px null 30px null);
+
+  .container {
+    @include margin(null 25px null 25px);
+  }
+}
+
+.intro-footer .about {
+
+  .brand {
+    line-height: 2.0em;
+    font-size: 1.5em;
+    color: white;
+
+    span {
+      vertical-align: top;
+    }
+
+    @include icon($position: before, $icon: $icon-logo) {
+      font-size: 2em;
+      margin-right: 20px;
+    }
+  }
+
+  p {
+    margin-top: 10px;
+    color: white;
+  }
+}
+
+.intro-footer .links {
+  @include inline-list;
+
+  font-size: 2.5em;
+
+  a {
+    color: white;
+  }
+
+  a:hover {
+    color: darken(white, 20%);
+  }
+
+  a span {
+    display: none;
+  }
+
+  .github {
+    @extend .fa;
+    @extend .fa-github;
+  }
+
+  .twitter {
+    @extend .fa;
+    @extend .fa-twitter;
+  }
+}
+
+.intro-footer .love {
+  color: darken(white, 20%);
+}

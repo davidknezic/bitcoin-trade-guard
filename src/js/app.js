@@ -3,6 +3,7 @@ define([
     'parse',
     //'localforage',
     'core/module',
+    'intro/module',
     'app/module',
     'bitstamp/module'
   ], function (
@@ -10,6 +11,7 @@ define([
     Parse,
     //localforage,
     CoreModule,
+    IntroModule,
     AppModule,
     BitstampModule
   ) {

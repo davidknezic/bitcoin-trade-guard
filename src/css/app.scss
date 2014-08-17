@@ -1,5 +1,6 @@
 @import "normalize";
 @import "foundation/settings";
+@import "bourbon";
 
 $include-html-classes: false;
 $include-html-type-classes: true;
@@ -9,5 +10,13 @@ $include-print-styles: false;
 @import "foundation/components/type";
 @import "foundation/components/grid";
 @import "foundation/components/block-grid";
+@import "foundation/components/buttons";
+@import "foundation/components/inline-lists";
 
-@import "intro";
+@import "font-awesome";
+
+@import "container";
+@import "icons";
+@import "intro/header";
+@import "intro/main";
+@import "intro/footer";

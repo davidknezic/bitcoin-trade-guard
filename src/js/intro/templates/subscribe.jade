@@ -1,0 +1,25 @@
+.container
+  header
+    h2 Register for beta!
+    p.lead
+      | <i class="tradeguard">tradeguad</i>
+      | is not quiet ready yet. But as soon
+      | as we have our first beta, you'll get
+      | notified!
+
+  p.unsuccessful
+    | Oh no! Something went wrong.<br>
+    | Just hang on and try again later.<br>
+    a.back(href="#") Return back to the form.
+
+  p.registered
+    | Yay! We added you to our list.<br>
+    | Expect to
+    | hear from us at a future point in time.<br>
+    | Thanks for your interest!
+
+  form.registration(action="#")
+    .email
+      input.email(type="email", required, placeholder="me@example.com")
+    .subscribe
+      button.submit(type="submit") Notify me!

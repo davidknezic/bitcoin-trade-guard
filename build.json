@@ -5,7 +5,8 @@
 
   "paths": {
     "app/templates": "../../build/js/app/templates",
-    "bitstamp/templates": "../../build/js/bitstamp/templates"
+    "bitstamp/templates": "../../build/js/bitstamp/templates",
+    "intro/templates": "../../build/js/intro/templates"
   },
 
   "optimize": "uglify",
