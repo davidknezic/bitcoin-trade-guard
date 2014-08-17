@@ -18,8 +18,8 @@ define([
   var app = new Marionette.Application();
 
   Parse.initialize(
-    'TTkLNPMw8KOMzJUcjumW2aOb340MFbWZhfphVr0w',
-    'l1AEye0vXbDUFQeoVnqT97hVGE08tzeaPqbvhzI5');
+    'pRwIFCcvOTWPspF4RE3EAsZ5ZWiYZnsWKrI0Ov07',
+    'tpoxsrjLcK2oeNwfNGM8kHI0fA7GXF45oFVBEKLH');
 
   /*localforage.config({
     name: 'tradeguard',
