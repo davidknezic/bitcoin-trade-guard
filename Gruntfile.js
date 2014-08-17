@@ -65,7 +65,9 @@ module.exports = function (grunt) {
       compile: {
         options: {
           includePaths: [
-            './src/bower_components/foundation/scss'
+            './src/bower_components/foundation/scss',
+            './src/bower_components/font-awesome/scss',
+            './src/bower_components/bourbon/dist'
           ]
         },
         files: {

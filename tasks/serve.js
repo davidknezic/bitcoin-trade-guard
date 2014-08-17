@@ -133,7 +133,9 @@ function createServeSassFiles(options) {
     response: true,
     force: true,
     includePaths: [
-      path.resolve(base + '/bower_components/foundation/scss')
+      path.resolve(base + '/bower_components/foundation/scss'),
+      path.resolve(base + '/bower_components/font-awesome/scss'),
+      path.resolve(base + '/bower_components/bourbon/dist')
     ]
   });
 };

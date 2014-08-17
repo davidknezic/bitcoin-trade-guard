@@ -21,6 +21,7 @@
     "backbone.localstorage": "~1.1.7",
     "backbone-validation": "~0.9.1",
     "bootstrap": "~3.1.1",
+    "bourbon": "~3.2.0",
     "cryptojslib": "~3.1.2",
     "d3": "~3.4.8",
     "font-awesome": "~4.1.0",
