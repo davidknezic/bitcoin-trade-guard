@@ -14,7 +14,13 @@ define([
     onStart: function (options) {
       this.tracking = new TrackingController();
 
-      this.tracking.trackPageView();
+      channel.vent.on('track:view', function (view) {
+        this.tracking.trackView(view);
+      }, this);
+
+      channel.vent.on('track:action', function (action) {
+        this.tracking.trackAction(action);
+      }, this);
     },
 
     onStop: function (options) {

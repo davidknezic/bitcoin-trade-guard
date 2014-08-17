@@ -41,18 +41,32 @@ define([
       });
     },
 
-    trackPageView: function () {
+    trackView: function (view) {
       this._getPermanentID(function (permanentID) {
-        var pageview = {
+
+        this.client.addEvent('views', {
           permanent_id: permanentID,
           user_agent: {
             browser: this.parser.getBrowser(),
             engine: this.parser.getEngine(),
             os: this.parser.getOS()
           }
-        };
+        });
+      }, this);
+    },
 
-        this.client.addEvent('pageviews', pageview);
+    trackAction: function (action) {
+      this._getPermanentID(function (permanentID) {
+
+        this.client.addEvent('actions', {
+          action: action,
+          permanent_id: permanentID,
+          user_agent: {
+            browser: this.parser.getBrowser(),
+            engine: this.parser.getEngine(),
+            os: this.parser.getOS()
+          }
+        });
       }, this);
     }
   });
