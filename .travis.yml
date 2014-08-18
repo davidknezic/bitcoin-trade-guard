@@ -17,3 +17,4 @@ deploy:
     secure: c/wHTZAzJUgWBm1w7KLlEDq6o9a/tbgzaZctJ+SkwwpqEIAJPEEeFzteRDzcQgGIRsws+C3m/zzWvqoQMmIoKvgJoNyoObZQazUCImly6hQMOHO8kqLMvugzXlgf4msnanA2pV3ABgvMG/MnoWSHnSJ8jbn6g16f+tDROnky8aU=
   app: bitcoin-trade-guard
   skip_cleanup: true
+  strategy: git
