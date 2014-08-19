@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "David Knezic <davidknezic@gmail.com>",
   "description": "Bitcoin trade analyzer. Browser based. Truth telling.",
+  "engines": {
+    "node": "0.10.x"
+  },
   "license": "MIT",
   "contributors": [],
   "repository": {
