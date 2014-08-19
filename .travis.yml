@@ -3,13 +3,12 @@ node_js:
   - "0.10"
 
 install:
-  - "npm install -g grunt-cli bower"
   - "npm install"
-  - "bower install"
+  - "./node_modules/bower/bin/bower install"
 
 script:
-  - "grunt test"
-  - "grunt build"
+  - "./node_modules/grunt-cli/bin/grunt test"
+  - "./node_modules/grunt-cli/bin/grunt build"
 
 deploy:
   provider: heroku
@@ -18,7 +17,6 @@ deploy:
   app: bitcoin-trade-guard
   strategy: git
   run:
-    - "npm install -g grunt-cli bower"
     - "npm install"
-    - "bower install"
-    - "grunt build"
+    - "./node_modules/bower/bin/bower install"
+    - "./node_modules/grunt-cli/bin/grunt build"
