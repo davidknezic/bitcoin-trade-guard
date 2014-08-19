@@ -18,5 +18,5 @@ deploy:
   strategy: git
   run:
     - "npm install"
-    - "./node_modules/bower/bin/bower install"
-    - "./node_modules/grunt-cli/bin/grunt build"
+    - "/app/node_modules/bower/bin/bower install"
+    - "/app/node_modules/grunt-cli/bin/grunt build"
