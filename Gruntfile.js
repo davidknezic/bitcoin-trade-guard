@@ -15,6 +15,16 @@ module.exports = function (grunt) {
       }
     },
 
+    bower: {
+      install: {
+        options: {
+          targetDir: './src/bower_components',
+          layout: 'byComponent',
+          copy: false
+        }
+      }
+    },
+
     jade: {
       templates: {
         options: {
@@ -116,6 +126,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-sass');
 
   grunt.loadTasks("./tasks");
@@ -135,4 +146,9 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test', []);
+
+  grunt.registerTask('heroku:production', [
+    'bower:install',
+    'build'
+  ]);
 };

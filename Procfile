@@ -1,1 +1,1 @@
-web: ./bin/server ./build -p $PORT
+web: npm start
