@@ -145,6 +145,10 @@ $color-darker: #555;
 
         border-radius: 5px;
         background-color: white;
+
+        &:hover {
+          background-color: darken(white, 10%);
+        }
       }
     }
 

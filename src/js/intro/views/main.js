@@ -12,7 +12,7 @@ define([
     scrollToMe: function () {
       $('html,body').animate({
         scrollTop: this.$el.offset().top
-      }, 1000);
+      }, 300);
     }
   });
 });

@@ -6,6 +6,9 @@
 $bg-darker: #0085B1;
 $bg-lighter: #00ADE7;
 
+$bg-button-normal: #BE0032;
+$bg-button-hover: lighten($bg-button-normal, 2%);
+
 i.tradeguard {
   font-style: normal;
 }
@@ -55,8 +58,12 @@ i.tradeguard {
     height: 60px;
     line-height: 60px;
     text-align: center;
-    background-color: #DF514C;
+    background-color: $bg-button-normal;
     color: white;
     margin-top: 50px;
+
+    &:hover {
+      background-color: $bg-button-hover;
+    }
   }
 }
