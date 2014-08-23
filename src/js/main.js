@@ -23,6 +23,7 @@ require.config({
     'uuid': '../bower_components/node-uuid/uuid',
     //'localforage': '../bower_components/localforage/dist/localforage',
     'ua-parser-js': '../bower_components/ua-parser-js/src/ua-parser',
+    'fastclick': '../bower_components/fastclick/lib/fastclick',
 
     'validators': 'lib/validators'
   },

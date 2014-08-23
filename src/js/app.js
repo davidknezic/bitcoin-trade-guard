@@ -1,4 +1,5 @@
 define([
+    'fastclick',
     'marionette',
     'parse',
     //'localforage',
@@ -7,6 +8,7 @@ define([
     'app/module',
     'bitstamp/module'
   ], function (
+    FastClick,
     Marionette,
     Parse,
     //localforage,
@@ -15,6 +17,9 @@ define([
     AppModule,
     BitstampModule
   ) {
+  // Speed up clicks on touch enabled devices
+  new FastClick(document.body);
+
   var app = new Marionette.Application();
 
   Parse.initialize(
